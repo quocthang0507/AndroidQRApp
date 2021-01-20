@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">QR Application</string>
+    <string name="app_name">QR Code Application</string>
 	<string name="title_main">The best QR application for Android!</string>
     <string name="title_scanner">QR Scanner</string>
     <string name="title_generator">QR Generator</string>
+	<string name="bottom_home">Home</string>
 </resources>

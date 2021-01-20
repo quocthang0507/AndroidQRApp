@@ -9,9 +9,11 @@ using Android.Widget;
 namespace QR
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/qr_code")]
-	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
+	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener, View.IOnClickListener
 	{
-		TextView textMessage;
+		TextView txtMessage;
+		ImageView btnHome;
+		BottomNavigationView navBottom;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -19,9 +21,12 @@ namespace QR
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 			SetContentView(Resource.Layout.activity_main);
 
-			textMessage = FindViewById<TextView>(Resource.Id.message);
-			BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
-			navigation.SetOnNavigationItemSelectedListener(this);
+			txtMessage = FindViewById<TextView>(Resource.Id.message);
+			btnHome = FindViewById<ImageView>(Resource.Id.btnHome);
+			navBottom = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+
+			navBottom.SetOnNavigationItemSelectedListener(this);
+			btnHome.SetOnClickListener(this);
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -36,13 +41,25 @@ namespace QR
 			switch (item.ItemId)
 			{
 				case Resource.Id.nav_scanner:
-					textMessage.SetText(Resource.String.title_scanner);
+					txtMessage.SetText(Resource.String.title_scanner);
 					return true;
 				case Resource.Id.nav_generator:
-					textMessage.SetText(Resource.String.title_generator);
+					txtMessage.SetText(Resource.String.title_generator);
 					return true;
 			}
 			return false;
+		}
+
+		public void OnClick(View v)
+		{
+			switch (v.Id)
+			{
+				case Resource.Id.btnHome:
+					Toast.MakeText(this, "Home clicked!", ToastLength.Short).Show();
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
