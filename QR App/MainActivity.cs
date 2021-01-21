@@ -2,18 +2,19 @@
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 
 namespace QR
 {
-	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/qr_code")]
+	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener, View.IOnClickListener
 	{
 		TextView txtMessage;
-		ImageView btnHome;
-		BottomNavigationView navBottom;
+		FloatingActionButton btnHome;
+		BottomNavigationView bottomNav;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -22,10 +23,10 @@ namespace QR
 			SetContentView(Resource.Layout.activity_main);
 
 			txtMessage = FindViewById<TextView>(Resource.Id.message);
-			btnHome = FindViewById<ImageView>(Resource.Id.btnHome);
-			navBottom = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+			btnHome = FindViewById<FloatingActionButton>(Resource.Id.btnHome);
+			bottomNav = FindViewById<BottomNavigationView>(Resource.Id.bottomNav);
 
-			navBottom.SetOnNavigationItemSelectedListener(this);
+			bottomNav.SetOnNavigationItemSelectedListener(this);
 			btnHome.SetOnClickListener(this);
 		}
 

@@ -6,7 +6,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
@@ -22,7 +21,7 @@
         android:text="@string/title_main" />
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:elevation="0dp"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/navigation" 
-        />
+        app:menu="@menu/bottom_navigation"/>
 
     <ImageView
         android:id="@+id/btnHome"
@@ -40,11 +38,10 @@
         android:padding="15dp"
         android:src="@drawable/home"
         android:background="@drawable/background_home"
-        app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/bottom_sheet_behavior"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:elevation="1dp"/>
-
+        />
 </android.support.constraint.ConstraintLayout>
