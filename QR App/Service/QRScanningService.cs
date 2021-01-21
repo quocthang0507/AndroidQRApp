@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
+using ZXing;
 using ZXing.Mobile;
 using ZXing.QrCode;
 
@@ -8,21 +10,32 @@ namespace QR.Service
     {
         public async Task<string> ScanAsync()
         {
-            var optionsDefault = new MobileBarcodeScanningOptions();
-            var optionsCustom = new MobileBarcodeScanningOptions();
+            var options = new MobileBarcodeScanningOptions();
             var scanner = new MobileBarcodeScanner()
             {
                 TopText = "Scan the QR Code",
                 BottomText = "Please wait...",
                 CancelButtonText = "Cancel"
             };
-            var scanResult = await scanner.Scan(optionsCustom);
+            var scanResult = await scanner.Scan(options);
             return scanResult.Text;
         }
 
-        public void Write()
+        public string Scan(Android.Graphics.Bitmap image)
         {
-            var optionsCustom = new QrCodeEncodingOptions()
+            BarcodeReader reader = new BarcodeReader()
+            {
+                AutoRotate = true,
+                TryInverted = true
+            };
+            var bytes = ConvertBitmapToBytes(image);
+            Result result = reader.Decode(bytes);
+            return result.Text.Trim();
+        }
+
+        public Android.Graphics.Bitmap Write(string text)
+        {
+            var options = new QrCodeEncodingOptions()
             {
                 DisableECI = true,
                 CharacterSet = "UTF-8",
@@ -31,7 +44,20 @@ namespace QR.Service
             };
             var writer = new BarcodeWriter();
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
-            writer.Options = optionsCustom;
+            writer.Options = options;
+            var bitmap = writer.Write(text);
+            return bitmap;
+        }
+
+        public byte[] ConvertBitmapToBytes(Android.Graphics.Bitmap bitmap)
+        {
+            byte[] bitmapData;
+            using (var stream = new MemoryStream())
+            {
+                bitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 0, stream);
+                bitmapData = stream.ToArray();
+            }
+            return bitmapData;
         }
     }
 }

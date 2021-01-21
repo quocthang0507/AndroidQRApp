@@ -15,11 +15,12 @@ namespace QR
         TextView txtMessage;
         FloatingActionButton btnHome;
         BottomNavigationView bottomNav;
+        Intent intent;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
             SetContentView(Resource.Layout.activity_main);
 
             txtMessage = FindViewById<TextView>(Resource.Id.message);
@@ -42,12 +43,12 @@ namespace QR
             switch (item.ItemId)
             {
                 case Resource.Id.nav_scanner:
-                    var intent_scanner = new Intent(this, typeof(ScannerActivity));
-                    StartActivity(intent_scanner);
+                    intent = new Intent(this, typeof(ScannerActivity));
+                    StartActivity(intent);
                     return true;
                 case Resource.Id.nav_generator:
-                    var intent_generator = new Intent(this, typeof(GeneratorActivity));
-                    StartActivity(intent_generator);
+                    intent = new Intent(this, typeof(GeneratorActivity));
+                    StartActivity(intent);
                     return true;
             }
             return false;
@@ -58,7 +59,7 @@ namespace QR
             switch (v.Id)
             {
                 case Resource.Id.btnHome:
-                    MoveTaskToBack(true);
+                    Finish();
                     break;
                 default:
                     break;

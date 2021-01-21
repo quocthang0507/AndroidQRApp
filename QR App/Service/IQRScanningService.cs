@@ -5,6 +5,7 @@ namespace QR.Service
     public interface IQRScanningService
     {
         Task<string> ScanAsync();
-        void Write();
+        string Scan(Android.Graphics.Bitmap image);
+        Android.Graphics.Bitmap Write(string text);
     }
 }
