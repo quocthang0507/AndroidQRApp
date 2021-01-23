@@ -5059,34 +5059,31 @@ namespace QR
 			public const int triangle = 2131230991;
 			
 			// aapt resource value: 0x7F080110
-			public const int txtResult = 2131230992;
+			public const int uniform = 2131230992;
 			
 			// aapt resource value: 0x7F080111
-			public const int uniform = 2131230993;
+			public const int unlabeled = 2131230993;
 			
 			// aapt resource value: 0x7F080112
-			public const int unlabeled = 2131230994;
+			public const int up = 2131230994;
 			
 			// aapt resource value: 0x7F080113
-			public const int up = 2131230995;
+			public const int useLogo = 2131230995;
 			
 			// aapt resource value: 0x7F080114
-			public const int useLogo = 2131230996;
+			public const int view_offset_helper = 2131230996;
 			
 			// aapt resource value: 0x7F080115
-			public const int view_offset_helper = 2131230997;
+			public const int visible = 2131230997;
 			
 			// aapt resource value: 0x7F080116
-			public const int visible = 2131230998;
+			public const int withText = 2131230998;
 			
 			// aapt resource value: 0x7F080117
-			public const int withText = 2131230999;
+			public const int wrap = 2131230999;
 			
 			// aapt resource value: 0x7F080118
-			public const int wrap = 2131231000;
-			
-			// aapt resource value: 0x7F080119
-			public const int wrap_content = 2131231001;
+			public const int wrap_content = 2131231000;
 			
 			static Id()
 			{

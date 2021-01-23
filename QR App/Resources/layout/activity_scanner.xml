@@ -12,12 +12,6 @@
         android:id="@+id/imgScan"
         android:contentDescription="@string/descriptionScan" />
 
-    <TextView
-        android:id="@+id/txtResult"
-        android:textSize="18dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/btnScan"
         android:text="@string/btnScan"

@@ -68,6 +68,7 @@
     <Compile Include="ScannerActivity.cs" />
     <Compile Include="Service\IQRScanningService.cs" />
     <Compile Include="Service\QRScanningService.cs" />
+    <Compile Include="Util\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
