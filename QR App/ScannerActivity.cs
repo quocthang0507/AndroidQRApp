@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using QR.Service;
-using QR.Util;
 using System;
 
 namespace QR
@@ -13,7 +12,7 @@ namespace QR
 	[Activity(Label = "QR Scanner", Theme = "@style/AppTheme")]
 	public class ScannerActivity : Activity
 	{
-		Button btnScan, btnScanImage;
+		Button btnQScan, btnSScan, btnScanImage;
 		ImageView imgScan;
 		int pickImageID = 1000;
 
@@ -25,24 +24,39 @@ namespace QR
 
 			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
 
-			btnScan = FindViewById<Button>(Resource.Id.btnScan);
+			btnQScan = FindViewById<Button>(Resource.Id.btnQScan);
+			btnSScan = FindViewById<Button>(Resource.Id.btnSScan);
 			btnScanImage = FindViewById<Button>(Resource.Id.btnScanImage);
 			imgScan = FindViewById<ImageView>(Resource.Id.imgScan);
 
-			btnScan.Click += btnScan_Clicked;
+			btnQScan.Click += btnQScan_Clicked;
+			btnSScan.Click += btnSScan_Clicked;
 			btnScanImage.Click += btnScanImage_Clicked;
 		}
 
-		private async void btnScan_Clicked(object sender, EventArgs e)
+		private void btnQScan_Clicked(object sender, EventArgs e)
 		{
 			try
 			{
-				var scanner = new QRScanningService(this);
+				var scanner = new QRScanningService(this, false);
 				scanner.ScanAsync();
 			}
 			catch (Exception ex)
 			{
-				Helper.ShowCommonAlert(this, "Error", ex.Message);
+				Helper.OpenAlert(this, "Error", ex.Message);
+			}
+		}
+
+		private void btnSScan_Clicked(object sender, EventArgs e)
+		{
+			try
+			{
+				var scanner = new QRScanningService(this, true);
+				scanner.ScanAsync();
+			}
+			catch (Exception ex)
+			{
+				Helper.OpenAlert(this, "Error", ex.Message);
 			}
 		}
 

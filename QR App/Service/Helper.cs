@@ -2,11 +2,11 @@
 using Android.Content;
 using Uri = Android.Net.Uri;
 
-namespace QR.Util
+namespace QR.Service
 {
 	public class Helper
 	{
-		public static void ShowCommonAlert(Context context, string title, string message)
+		public static void OpenAlert(Context context, string title, string message)
 		{
 			AlertDialog dialog = null;
 			dialog = new AlertDialog.Builder(context)
@@ -19,7 +19,7 @@ namespace QR.Util
 			dialog.Show();
 		}
 
-		public static void ShowUrlAlert(Context context, string title, string positiveTitle, string url)
+		public static void OpenUrlAlert(Context context, string title, string positiveTitle, string url)
 		{
 			AlertDialog dialog = null;
 			dialog = new AlertDialog.Builder(context)
@@ -39,5 +39,25 @@ namespace QR.Util
 			dialog.Show();
 		}
 
+		public static void OpenGeoAlert(Context context, string title, string geolocation)
+		{
+			AlertDialog dialog = null;
+			dialog = new AlertDialog.Builder(context)
+			.SetTitle(title)
+			.SetMessage(geolocation)
+			.SetNegativeButton("Cancel", (sender, e) =>
+			{
+				dialog.Cancel();
+			})
+			.SetPositiveButton("Open Map", (sender, e) =>
+			{
+				Uri geo = Uri.Parse(geolocation);
+				Intent mapIntent = new Intent(Intent.ActionView, geo);
+				mapIntent.SetPackage("com.google.android.apps.maps");
+				context.StartActivity(mapIntent);
+			})
+			.Create();
+			dialog.Show();
+		}
 	}
 }

@@ -68,7 +68,7 @@
     <Compile Include="ScannerActivity.cs" />
     <Compile Include="Service\IQRScanningService.cs" />
     <Compile Include="Service\QRScanningService.cs" />
-    <Compile Include="Util\Helper.cs" />
+    <Compile Include="Service\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -159,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\btn_scan_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\thang.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

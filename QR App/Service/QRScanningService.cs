@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.Graphics;
-using QR.Util;
 using System;
 using ZXing;
 using ZXing.Client.Result;
@@ -14,20 +13,32 @@ namespace QR.Service
 	public class QRScanningService : IQRScanningService
 	{
 		private Context context;
+		private bool difficulty = false;
 
 		public QRScanningService(Context context)
 		{
 			this.context = context;
 		}
 
+		public QRScanningService(Context context, bool difficulty)
+		{
+			this.context = context;
+			this.difficulty = difficulty;
+		}
+
 		public async void ScanAsync()
 		{
-			var options = new MobileBarcodeScanningOptions()
+			var options = new MobileBarcodeScanningOptions();
+			if (difficulty)
 			{
-				TryHarder = true,
-				AutoRotate = true,
-				TryInverted = true
-			};
+				options = new MobileBarcodeScanningOptions()
+				{
+					TryHarder = true,
+					AutoRotate = true,
+					TryInverted = true
+				};
+			}
+
 			var scanner = new MobileBarcodeScanner()
 			{
 				TopText = "Hold the camera up to the barcode\nAbout 6 inches away",
@@ -86,7 +97,6 @@ namespace QR.Service
 			return parser.Type;
 		}
 
-
 		private void ShowProperlyResult(string content, ParsedResultType type)
 		{
 			switch (type)
@@ -94,20 +104,21 @@ namespace QR.Service
 				case ParsedResultType.ADDRESSBOOK:
 					break;
 				case ParsedResultType.EMAIL_ADDRESS:
-					Helper.ShowUrlAlert(context, "Would you like to open email app?", "Send Email", content);
+					Helper.OpenUrlAlert(context, "Would you like to open email app?", "Send Email", content);
 					break;
 				case ParsedResultType.PRODUCT:
 					break;
 				case ParsedResultType.URI:
-					Helper.ShowUrlAlert(context, "Would you like to open this URL?", "Open Browser", content);
+					Helper.OpenUrlAlert(context, "Would you like to open this URL?", "Open Browser", content);
 					break;
 				case ParsedResultType.TEXT:
-					Helper.ShowCommonAlert(context, "Text", content);
+					Helper.OpenAlert(context, "Text", content);
 					break;
 				case ParsedResultType.GEO:
+					Helper.OpenGeoAlert(context,"Would you like to open map?", content);
 					break;
 				case ParsedResultType.TEL:
-					Helper.ShowUrlAlert(context, "Would you like to open dialer?", "Open Dialer", content);
+					Helper.OpenUrlAlert(context, "Would you like to open dialer?", "Open Dialer", content);
 					break;
 				case ParsedResultType.SMS:
 					break;
@@ -120,7 +131,7 @@ namespace QR.Service
 				case ParsedResultType.VIN:
 					break;
 				default:
-					Helper.ShowCommonAlert(context, "Result", content);
+					Helper.OpenAlert(context, "Result", content);
 					break;
 			}
 		}
