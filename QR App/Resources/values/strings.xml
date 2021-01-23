@@ -6,9 +6,9 @@
 	<string name="title_about">About</string>
 	<string name="bottom_home">Home</string>
 	<string name="fabHome">Home</string>
-	<string name="btnSScan">Slow Scan</string>
+	<string name="btnSScan">Slow Scan\n(More accuracy)</string>
 	<string name="btnQScan">Quick Scan</string>
-	<string name="btnScanImage">Scan image</string>
+	<string name="btnScanImage">Read from image</string>
 	<string name="descriptionScan">Scan</string>
 	<string name="descriptionImage">Image</string>
 </resources>

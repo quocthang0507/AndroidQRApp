@@ -43,7 +43,7 @@ namespace QR
 			}
 			catch (Exception ex)
 			{
-				Helper.OpenAlert(this, "Error", ex.Message);
+				IntentHelper.OpenAlert(this, "Error", ex.Message);
 			}
 		}
 
@@ -56,7 +56,7 @@ namespace QR
 			}
 			catch (Exception ex)
 			{
-				Helper.OpenAlert(this, "Error", ex.Message);
+				IntentHelper.OpenAlert(this, "Error", ex.Message);
 			}
 		}
 

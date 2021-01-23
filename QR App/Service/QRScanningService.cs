@@ -7,6 +7,7 @@ using ZXing.Common;
 using ZXing.Mobile;
 using ZXing.QrCode;
 using Result = ZXing.Result;
+using Settings = Android.Provider.Settings;
 
 namespace QR.Service
 {
@@ -104,34 +105,36 @@ namespace QR.Service
 				case ParsedResultType.ADDRESSBOOK:
 					break;
 				case ParsedResultType.EMAIL_ADDRESS:
-					Helper.OpenUrlAlert(context, "Would you like to open email app?", "Send Email", content);
+					IntentHelper.OpenAlert(context, "Would you like to open Email App?", "Open", content);
 					break;
 				case ParsedResultType.PRODUCT:
 					break;
 				case ParsedResultType.URI:
-					Helper.OpenUrlAlert(context, "Would you like to open this URL?", "Open Browser", content);
+					IntentHelper.OpenAlert(context, "Would you like to open Browser?", "Open", content);
 					break;
 				case ParsedResultType.TEXT:
-					Helper.OpenAlert(context, "Text", content);
+					IntentHelper.OpenAlert(context, "Text", content);
 					break;
 				case ParsedResultType.GEO:
-					Helper.OpenGeoAlert(context,"Would you like to open map?", content);
+					IntentHelper.OpenAlert(context, "Would you like to open Map?", "Open", content);
 					break;
 				case ParsedResultType.TEL:
-					Helper.OpenUrlAlert(context, "Would you like to open dialer?", "Open Dialer", content);
+					IntentHelper.OpenAlert(context, "Would you like to open Dialer?", "Open", content);
 					break;
 				case ParsedResultType.SMS:
+					IntentHelper.OpenAlert(context, "Would you like to open Message App?", "Open", content);
 					break;
 				case ParsedResultType.CALENDAR:
 					break;
 				case ParsedResultType.WIFI:
+					IntentHelper.OpenAlert(context, "Would you like to connect this wifi?", "Connect", content, Settings.ActionWirelessSettings);
 					break;
 				case ParsedResultType.ISBN:
 					break;
 				case ParsedResultType.VIN:
 					break;
 				default:
-					Helper.OpenAlert(context, "Result", content);
+					IntentHelper.OpenAlert(context, "Result", content);
 					break;
 			}
 		}

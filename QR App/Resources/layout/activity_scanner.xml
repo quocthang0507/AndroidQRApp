@@ -7,10 +7,11 @@
     android:gravity="center_horizontal">
 
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="400px"
-        android:layout_height="400px"
+        android:layout_width="350px"
+        android:layout_height="350px"
+        android:layout_margin="20dp"
         android:id="@+id/imgScan"
+        android:src="@drawable/qr_code"
         android:contentDescription="@string/descriptionScan" />
 
     <LinearLayout
@@ -23,14 +24,14 @@
             android:id="@+id/btnQScan"
             android:text="@string/btnQScan"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/descriptionScan" />
         <Button
             android:id="@+id/btnSScan"
             android:text="@string/btnSScan"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/descriptionScan" />
 
