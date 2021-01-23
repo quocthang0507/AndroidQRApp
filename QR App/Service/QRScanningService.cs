@@ -1,6 +1,6 @@
-﻿using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
+using QR.Util;
 using System;
 using ZXing;
 using ZXing.Client.Result;
@@ -63,7 +63,7 @@ namespace QR.Service
 			return bitmap;
 		}
 
-		public BinaryBitmap ConvertBitmapToBytes(Bitmap bitmap)
+		private BinaryBitmap ConvertBitmapToBytes(Bitmap bitmap)
 		{
 			int[] intArr = new int[bitmap.Width * bitmap.Height];
 			bitmap.GetPixels(intArr, 0, bitmap.Width, 0, 0, bitmap.Width, bitmap.Height);
@@ -73,58 +73,41 @@ namespace QR.Service
 			return binaryBitmap;
 		}
 
-		public static byte[] ConvertIntArrToByteArr(int[] src)
+		private static byte[] ConvertIntArrToByteArr(int[] src)
 		{
 			byte[] result = new byte[src.Length * sizeof(int)];
 			Buffer.BlockCopy(src, 0, result, 0, result.Length);
 			return result;
 		}
 
-		public ParsedResultType GetResultType(Result result)
+		private ParsedResultType GetResultType(Result result)
 		{
 			ParsedResult parser = ResultParser.parseResult(result);
 			return parser.Type;
 		}
 
-		private void ShowAlertWithURL(string title, string url)
-		{
-			AlertDialog dialog = null;
-			dialog = new AlertDialog.Builder(context)
-			.SetTitle(title)
-			.SetMessage(url)
-			.SetNegativeButton("Cancel", (sender, e) =>
-			{
-				dialog.Cancel();
-			})
-			.SetPositiveButton("Open", (sender, e) =>
-			{
-				Intent browserIntent = new Intent(Intent.ActionDefault);
-				browserIntent.SetData(Android.Net.Uri.Parse(url));
-				context.StartActivity(browserIntent);
-			})
-			.Create();
-			dialog.Show();
-		}
 
-
-		public void ShowProperlyResult(string text, ParsedResultType type)
+		private void ShowProperlyResult(string content, ParsedResultType type)
 		{
 			switch (type)
 			{
 				case ParsedResultType.ADDRESSBOOK:
 					break;
 				case ParsedResultType.EMAIL_ADDRESS:
+					Helper.ShowUrlAlert(context, "Would you like to open email app?", "Send Email", content);
 					break;
 				case ParsedResultType.PRODUCT:
 					break;
 				case ParsedResultType.URI:
-					ShowAlertWithURL("Would you like to open this URL", text);
+					Helper.ShowUrlAlert(context, "Would you like to open this URL?", "Open Browser", content);
 					break;
 				case ParsedResultType.TEXT:
+					Helper.ShowCommonAlert(context, "Text", content);
 					break;
 				case ParsedResultType.GEO:
 					break;
 				case ParsedResultType.TEL:
+					Helper.ShowUrlAlert(context, "Would you like to open dialer?", "Open Dialer", content);
 					break;
 				case ParsedResultType.SMS:
 					break;
@@ -137,6 +120,7 @@ namespace QR.Service
 				case ParsedResultType.VIN:
 					break;
 				default:
+					Helper.ShowCommonAlert(context, "Result", content);
 					break;
 			}
 		}

@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using QR.Service;
+using QR.Util;
 using System;
 
 namespace QR
@@ -41,7 +42,7 @@ namespace QR
 			}
 			catch (Exception ex)
 			{
-				ShowAlert("Error", ex.Message);
+				Helper.ShowCommonAlert(this, "Error", ex.Message);
 			}
 		}
 
@@ -80,19 +81,6 @@ namespace QR
 			catch (Exception)
 			{
 			}
-		}
-
-		private void ShowAlert(string title, string message)
-		{
-			AlertDialog dialog = null;
-			dialog = new AlertDialog.Builder(this)
-			.SetTitle(title)
-			.SetMessage(message)
-			.SetNeutralButton("OK", (sender, e) =>
-			{
-				dialog.Cancel();
-			}).Create();
-			dialog.Show();
 		}
 	}
 }

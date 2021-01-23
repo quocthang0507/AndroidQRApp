@@ -1,15 +1,11 @@
-﻿using Android.App;
-using ZXing.Client.Result;
+﻿using Android.Graphics;
 
 namespace QR.Service
 {
 	public interface IQRScanningService
 	{
 		void ScanAsync();
-		string Scan(Android.Graphics.Bitmap image);
-		Android.Graphics.Bitmap Write(string text);
-		ParsedResultType GetResultType(Result result);
-		void ShowAlertWithURL(string title, string url);
-		void ShowProperlyResult(string text, ParsedResultType type);
+		string Scan(Bitmap image);
+		Bitmap Write(string text);
 	}
 }
