@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using System;
@@ -12,6 +13,7 @@ namespace QR
 		private EditText tbxContent;
 		private Button btnEncode;
 		private RadioGroup radioGroup;
+		private ImageView imgResult;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -22,6 +24,7 @@ namespace QR
 			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
 			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
 			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
+			imgResult = FindViewById<ImageView>(Resource.Id.imgResource);
 
 			btnEncode.Click += BtnEncode_Click;
 
@@ -30,7 +33,8 @@ namespace QR
 
 		private void BtnEncode_Click(object sender, EventArgs e)
 		{
-			throw new NotImplementedException();
+			var intent = new Intent(this, typeof(ResultActivity));
+			StartActivity(intent);
 		}
 
 		private void CreateRadioButton()

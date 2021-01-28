@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,9 +11,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/tbxContent"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +22,6 @@
             android:maxLines="100"
             android:gravity="top"
             android:scrollbars="vertical"
-            android:id="@+id/tbxContent"
             android:scrollbarAlwaysDrawVerticalTrack="true"
     />
 
@@ -32,10 +33,11 @@
         </RadioGroup>
 
         <Button
+            android:id="@+id/btnEncode"
             android:text="@string/btnEncode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnEncode" />
+            />
 
     </LinearLayout>
 </ScrollView>
