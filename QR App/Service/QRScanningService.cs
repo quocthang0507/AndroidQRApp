@@ -113,7 +113,7 @@ namespace QR.Service
 					IntentHelper.OpenAlert(context, "Would you like to open Browser?", "Open", content);
 					break;
 				case ParsedResultType.TEXT:
-					IntentHelper.OpenAlert(context, "Text", content);
+					IntentHelper.OpenAlert(context, "Plaint Text", content);
 					break;
 				case ParsedResultType.GEO:
 					IntentHelper.OpenAlert(context, "Would you like to open Map?", "Open", content);
