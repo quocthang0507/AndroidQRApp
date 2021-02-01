@@ -11,5 +11,10 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:contentDescription="@string/descriptionImage" />
+    <Button
+        android:text="@string/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSave" />
 
 </LinearLayout>

@@ -15,14 +15,14 @@ namespace QR.Service
 	{
 		private Context context;
 		private bool difficulty = false;
-		private int WIDTH = 1000, HEIGHT = 1000;
+		private int WIDTH, HEIGHT;
 
 		public QRScanningService(Context context)
 		{
 			this.context = context;
 		}
 
-		public QRScanningService(Context context, bool difficulty, int width = 1000, int height = 1000)
+		public QRScanningService(Context context, bool difficulty, int width = 200, int height = 200)
 		{
 			this.context = context;
 			this.difficulty = difficulty;

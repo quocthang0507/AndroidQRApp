@@ -10,6 +10,7 @@
 	<string name="btnQScan">Quick Scan</string>
 	<string name="btnScanImage">Read from image</string>
 	<string name="btnEncode">Create QR Code</string>
+	<string name="btnSave">Save image</string>
 	<string name="descriptionScan">Scan</string>
 	<string name="descriptionImage">Image</string>
 	<string name="lblInput">Text</string>

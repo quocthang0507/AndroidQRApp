@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:fillViewport="false"
-    >
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/tbxContent"
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="5"
+        android:maxLines="100"
+        android:gravity="top"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+    />
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/tbxContent"
-            android:inputType="textMultiLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="5"
-            android:maxLines="100"
-            android:gravity="top"
-            android:scrollbars="vertical"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-    />
-
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btnEncode"
-            android:text="@string/btnEncode"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             />
 
-    </LinearLayout>
-</ScrollView>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btnEncode"
+        android:text="@string/btnEncode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+</LinearLayout>
