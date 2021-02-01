@@ -1,11 +1,14 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using System;
 
 namespace QR
 {
@@ -22,6 +25,8 @@ namespace QR
 			base.OnCreate(savedInstanceState);
 
 			SetContentView(Resource.Layout.activity_main);
+
+			CheckWritePermission();
 
 			txtMessage = FindViewById<TextView>(Resource.Id.message);
 			btnHome = FindViewById<FloatingActionButton>(Resource.Id.btnHome);
@@ -63,6 +68,14 @@ namespace QR
 					break;
 				default:
 					break;
+			}
+		}
+
+		private void CheckWritePermission()
+		{
+			if (CheckSelfPermission(Android.Manifest.Permission.WriteExternalStorage) == Permission.Denied)
+			{
+				this.RequestPermissions(new string[] { Manifest.Permission.WriteExternalStorage }, 1);
 			}
 		}
 	}

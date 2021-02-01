@@ -38,7 +38,7 @@ namespace QR
 		private void BtnSave_Click(object sender, System.EventArgs e)
 		{
 			Java.IO.File storagePath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
-			string datetime = DateTime.Now.ToString("dd-MM-yyyy");
+			string datetime = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
 			string path = System.IO.Path.Combine(storagePath.ToString(), $"QR_{datetime}.jpg");
 			SaveImage(bmpQR, path);
 		}
@@ -56,6 +56,7 @@ namespace QR
 			catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Short).Show();
+				return;
 			}
 			finally
 			{
