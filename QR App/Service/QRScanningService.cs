@@ -15,21 +15,24 @@ namespace QR.Service
 	{
 		private Context context;
 		private bool difficulty = false;
+		private int WIDTH = 1000, HEIGHT = 1000;
 
 		public QRScanningService(Context context)
 		{
 			this.context = context;
 		}
 
-		public QRScanningService(Context context, bool difficulty)
+		public QRScanningService(Context context, bool difficulty, int width = 1000, int height = 1000)
 		{
 			this.context = context;
 			this.difficulty = difficulty;
+			this.WIDTH = width;
+			this.HEIGHT = height;
 		}
 
 		public async void ScanAsync()
 		{
-			var options = new MobileBarcodeScanningOptions();
+			MobileBarcodeScanningOptions options = new MobileBarcodeScanningOptions();
 			if (difficulty)
 			{
 				options = new MobileBarcodeScanningOptions()
@@ -40,38 +43,40 @@ namespace QR.Service
 				};
 			}
 
-			var scanner = new MobileBarcodeScanner()
+			MobileBarcodeScanner scanner = new MobileBarcodeScanner()
 			{
 				TopText = "Hold the camera up to the barcode\nAbout 6 inches away",
 				BottomText = "Wait for the barcode to automatically scan!",
 				CancelButtonText = "Cancel",
 				CameraUnsupportedMessage = "The device's camera is not supported"
 			};
-			var scanResult = await scanner.Scan(options);
+			Result scanResult = await scanner.Scan(options);
 			ShowProperlyResult(scanResult.Text, GetResultType(scanResult));
 		}
 
 		public string Scan(Bitmap image)
 		{
 			Reader reader = new MultiFormatReader();
-			var bytes = ConvertBitmapToBytes(image);
+			BinaryBitmap bytes = ConvertBitmapToBytes(image);
 			Result result = reader.decode(bytes);
 			return result.Text.Trim();
 		}
 
-		public Bitmap Write(string text)
+		public Bitmap Encode(string text)
 		{
-			var options = new QrCodeEncodingOptions()
+			QrCodeEncodingOptions options = new QrCodeEncodingOptions()
 			{
 				DisableECI = true,
 				CharacterSet = "UTF-8",
-				Width = 250,
-				Height = 250
+				Width = WIDTH,
+				Height = HEIGHT
 			};
-			var writer = new BarcodeWriter();
-			writer.Format = BarcodeFormat.QR_CODE;
-			writer.Options = options;
-			var bitmap = writer.Write(text);
+			BarcodeWriter writer = new BarcodeWriter()
+			{
+				Format = BarcodeFormat.QR_CODE,
+				Options = options
+			};
+			Bitmap bitmap = writer.Write(text);
 			return bitmap;
 		}
 
@@ -79,7 +84,7 @@ namespace QR.Service
 		{
 			int[] intArr = new int[bitmap.Width * bitmap.Height];
 			bitmap.GetPixels(intArr, 0, bitmap.Width, 0, 0, bitmap.Width, bitmap.Height);
-			var bytes = ConvertIntArrToByteArr(intArr);
+			byte[] bytes = ConvertIntArrToByteArr(intArr);
 			LuminanceSource source = new RGBLuminanceSource(bytes, bitmap.Width, bitmap.Height);
 			BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
 			return binaryBitmap;

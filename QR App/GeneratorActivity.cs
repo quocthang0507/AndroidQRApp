@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using QR.Service;
 using System;
 using ZXing.Client.Result;
 
@@ -13,7 +14,7 @@ namespace QR
 		private EditText tbxContent;
 		private Button btnEncode;
 		private RadioGroup radioGroup;
-		private ImageView imgResult;
+		private const string EXTRA_QR = "QR CODE RESULT";
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -24,7 +25,6 @@ namespace QR
 			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
 			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
 			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
-			imgResult = FindViewById<ImageView>(Resource.Id.imgResource);
 
 			btnEncode.Click += BtnEncode_Click;
 
@@ -33,8 +33,18 @@ namespace QR
 
 		private void BtnEncode_Click(object sender, EventArgs e)
 		{
-			var intent = new Intent(this, typeof(ResultActivity));
-			StartActivity(intent);
+			try
+			{
+				QRScanningService service = new QRScanningService(this, false);
+				Android.Graphics.Bitmap qr = service.Encode(tbxContent.Text);
+				Intent intent = new Intent(this, typeof(ResultActivity));
+				intent.PutExtra(EXTRA_QR, qr);
+				StartActivity(intent);
+			}
+			catch (Exception)
+			{
+
+			}
 		}
 
 		private void CreateRadioButton()

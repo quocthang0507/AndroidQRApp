@@ -38,8 +38,8 @@ namespace QR
 		{
 			try
 			{
-				var scanner = new QRScanningService(this, false);
-				scanner.ScanAsync();
+				QRScanningService service = new QRScanningService(this, false);
+				service.ScanAsync();
 			}
 			catch (Exception ex)
 			{
@@ -51,7 +51,7 @@ namespace QR
 		{
 			try
 			{
-				var scanner = new QRScanningService(this, true);
+				QRScanningService scanner = new QRScanningService(this, true);
 				scanner.ScanAsync();
 			}
 			catch (Exception ex)
@@ -86,8 +86,8 @@ namespace QR
 		{
 			try
 			{
-				var scanner = new QRScanningService(this);
-				var result = scanner.Scan(bitmap);
+				QRScanningService scanner = new QRScanningService(this);
+				string result = scanner.Scan(bitmap);
 				if (result != null)
 				{
 				}

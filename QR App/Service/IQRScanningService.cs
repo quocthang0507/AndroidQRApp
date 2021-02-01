@@ -6,6 +6,6 @@ namespace QR.Service
 	{
 		void ScanAsync();
 		string Scan(Bitmap image);
-		Bitmap Write(string text);
+		Bitmap Encode(string text);
 	}
 }
