@@ -3,9 +3,8 @@
 	<string name="title_main">The best QR application for Android!</string>
     <string name="title_scanner">QR Scanner</string>
     <string name="title_generator">QR Generator</string>
+	<string name="title_calendar">Lunar Calendar</string>
 	<string name="title_about">About</string>
-	<string name="bottom_home">Home</string>
-	<string name="fabHome">Home</string>
 	<string name="btnSScan">Slow Scan\n(More accuracy)</string>
 	<string name="btnQScan">Quick Scan</string>
 	<string name="btnScanImage">Read from image</string>
@@ -13,5 +12,6 @@
 	<string name="btnSave">Save image</string>
 	<string name="descriptionScan">Scan</string>
 	<string name="descriptionImage">Image</string>
+	<string name="descriptionCalendar">Calendar</string>
 	<string name="lblInput">Text</string>
 </resources>

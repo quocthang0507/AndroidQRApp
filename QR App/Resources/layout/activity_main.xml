@@ -46,18 +46,4 @@
         app:menu="@menu/bottom_navigation"
         />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/home"
-        android:contentDescription="@string/fabHome"
-        android:layout_margin="15dp"
-        android:backgroundTint="@color/LightGoldenrodYellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:elevation="8dp"
-        />
 </android.support.constraint.ConstraintLayout>

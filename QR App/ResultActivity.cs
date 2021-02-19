@@ -22,11 +22,16 @@ namespace QR
 			// Create your application here
 			SetContentView(Resource.Layout.activity_qr_result);
 
-			imgQR = FindViewById<ImageView>(Resource.Id.imgResult);
-			btnSave = FindViewById<Button>(Resource.Id.btnSave);
+			InitControl();
 
 			GetQR();
 			btnSave.Click += BtnSave_Click;
+		}
+
+		private void InitControl()
+		{
+			imgQR = FindViewById<ImageView>(Resource.Id.imgResult);
+			btnSave = FindViewById<Button>(Resource.Id.btnSave);
 		}
 
 		private void GetQR()

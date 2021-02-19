@@ -38,5 +38,6 @@ namespace QR.Service
 			.Create();
 			dialog.Show();
 		}
+
 	}
 }

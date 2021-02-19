@@ -8,15 +8,13 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using System;
 
 namespace QR
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/qr_code")]
-	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener, View.IOnClickListener
+	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
 	{
 		TextView txtMessage;
-		FloatingActionButton btnHome;
 		BottomNavigationView bottomNav;
 		Intent intent;
 
@@ -24,16 +22,22 @@ namespace QR
 		{
 			base.OnCreate(savedInstanceState);
 
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
 			SetContentView(Resource.Layout.activity_main);
 
 			CheckWritePermission();
+			CheckReadPermission();
 
-			txtMessage = FindViewById<TextView>(Resource.Id.message);
-			btnHome = FindViewById<FloatingActionButton>(Resource.Id.btnHome);
-			bottomNav = FindViewById<BottomNavigationView>(Resource.Id.bottomNav);
+			InitControl();
 
-			btnHome.SetOnClickListener(this);
 			bottomNav.SetOnNavigationItemSelectedListener(this);
+		}
+
+		private void InitControl()
+		{
+			txtMessage = FindViewById<TextView>(Resource.Id.message);
+			bottomNav = FindViewById<BottomNavigationView>(Resource.Id.bottomNav);
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -55,27 +59,27 @@ namespace QR
 					intent = new Intent(this, typeof(GeneratorActivity));
 					StartActivity(intent);
 					return true;
+				case Resource.Id.nav_calendar:
+					intent = new Intent(this, typeof(CalendarActivity));
+					StartActivity(intent);
+					return true;
 			}
 			return false;
-		}
-
-		public void OnClick(View v)
-		{
-			switch (v.Id)
-			{
-				case Resource.Id.btnHome:
-					Finish();
-					break;
-				default:
-					break;
-			}
 		}
 
 		private void CheckWritePermission()
 		{
 			if (CheckSelfPermission(Android.Manifest.Permission.WriteExternalStorage) == Permission.Denied)
 			{
-				this.RequestPermissions(new string[] { Manifest.Permission.WriteExternalStorage }, 1);
+				RequestPermissions(new string[] { Manifest.Permission.WriteExternalStorage }, 1);
+			}
+		}
+
+		private void CheckReadPermission()
+		{
+			if (CheckSelfPermission(Android.Manifest.Permission.ReadExternalStorage) == Permission.Denied)
+			{
+				RequestPermissions(new string[] { Manifest.Permission.ReadExternalStorage }, 1);
 			}
 		}
 	}

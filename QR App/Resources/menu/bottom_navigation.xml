@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
+	<item
         android:id="@+id/nav_scanner"
         android:icon="@drawable/qr_scanner"
         android:title="@string/title_scanner" />
 
-    <item
+	<item
         android:id="@+id/nav_generator"
         android:icon="@drawable/qr_generator"
         android:title="@string/title_generator" />
+
+	<item
+        android:id="@+id/nav_calendar"
+        android:icon="@drawable/calendar"
+        android:title="@string/title_calendar" />
 </menu>

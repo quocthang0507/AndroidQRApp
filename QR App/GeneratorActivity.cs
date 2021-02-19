@@ -22,13 +22,18 @@ namespace QR
 
 			SetContentView(Resource.Layout.activity_generator);
 
-			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
-			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
-			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
+			InitControl();
 
 			btnEncode.Click += BtnEncode_Click;
 
 			CreateRadioButton();
+		}
+
+		private void InitControl()
+		{
+			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
+			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
+			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
 		}
 
 		private void BtnEncode_Click(object sender, EventArgs e)
