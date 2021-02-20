@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIO App", "QR App\AIO App.csproj", "{8BEB9D1A-A142-436F-B078-8D7B15B76B8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIO App", "AIO App\AIO App.csproj", "{8BEB9D1A-A142-436F-B078-8D7B15B76B8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
