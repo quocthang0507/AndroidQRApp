@@ -24,8 +24,6 @@ namespace QR
 
 			InitControl();
 
-			btnEncode.Click += BtnEncode_Click;
-
 			CreateRadioButton();
 		}
 
@@ -34,6 +32,8 @@ namespace QR
 			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
 			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
 			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
+			
+			btnEncode.Click += BtnEncode_Click;
 		}
 
 		private void BtnEncode_Click(object sender, EventArgs e)

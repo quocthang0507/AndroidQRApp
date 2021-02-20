@@ -14,7 +14,6 @@ namespace QR
 	{
 		private Button btnQScan, btnSScan, btnScanImage;
 		private ImageView imgScan;
-		private readonly int PickImageId = 1000;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -25,10 +24,6 @@ namespace QR
 			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
 
 			InitControl();
-
-			btnQScan.Click += btnQScan_Clicked;
-			btnSScan.Click += btnSScan_Clicked;
-			btnScanImage.Click += btnScanImage_Clicked;
 		}
 
 		private void InitControl()
@@ -37,6 +32,10 @@ namespace QR
 			btnSScan = FindViewById<Button>(Resource.Id.btnSScan);
 			btnScanImage = FindViewById<Button>(Resource.Id.btnScanImage);
 			imgScan = FindViewById<ImageView>(Resource.Id.imgScan);
+
+			btnQScan.Click += btnQScan_Clicked;
+			btnSScan.Click += btnSScan_Clicked;
+			btnScanImage.Click += btnScanImage_Clicked;
 		}
 
 		private void btnQScan_Clicked(object sender, EventArgs e)
@@ -72,6 +71,7 @@ namespace QR
 
 		private async void PickAndScanPhoto()
 		{
+			await CrossMedia.Current.Initialize();
 			MediaFile file = await CrossMedia.Current.PickPhotoAsync();
 			if (file != null)
 			{
