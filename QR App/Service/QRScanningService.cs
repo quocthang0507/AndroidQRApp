@@ -9,7 +9,7 @@ using ZXing.QrCode;
 using Result = ZXing.Result;
 using Settings = Android.Provider.Settings;
 
-namespace QR.Service
+namespace AIOApp.Service
 {
 	public class QRScanningService : IQRScanningService
 	{

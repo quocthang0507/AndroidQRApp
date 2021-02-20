@@ -1,6 +1,6 @@
 ﻿using Android.Graphics;
 
-namespace QR.Service
+namespace AIOApp.Service
 {
 	public interface IQRScanningService
 	{

@@ -2,11 +2,11 @@
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using QR.CalendarLib;
+using AIOApp.CalendarLib;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace QR.Service
+namespace AIOApp.Service
 {
 	public class CustomAdapter : BaseAdapter<Calendar>
 	{

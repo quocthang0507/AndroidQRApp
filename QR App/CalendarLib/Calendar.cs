@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QR.CalendarLib
+namespace AIOApp.CalendarLib
 {
 	public class Calendar
 	{

@@ -2,15 +2,15 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using QR.CalendarLib;
-using QR.Service;
+using AIOApp.CalendarLib;
+using AIOApp.Service;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using static Android.App.DatePickerDialog;
-using Calendar = QR.CalendarLib.Calendar;
+using Calendar = AIOApp.CalendarLib.Calendar;
 
-namespace QR
+namespace AIOApp
 {
 	[Activity(Label = "Calendar", Theme = "@style/AppTheme")]
 	public class CalendarActivity : Activity, AdapterView.IOnItemClickListener, IOnDateSetListener

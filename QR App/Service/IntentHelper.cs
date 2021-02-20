@@ -2,7 +2,7 @@
 using Android.Content;
 using Uri = Android.Net.Uri;
 
-namespace QR.Service
+namespace AIOApp.Service
 {
 	public class IntentHelper
 	{

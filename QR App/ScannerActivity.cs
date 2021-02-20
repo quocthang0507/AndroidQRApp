@@ -4,10 +4,10 @@ using Android.OS;
 using Android.Widget;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using QR.Service;
+using AIOApp.Service;
 using System;
 
-namespace QR
+namespace AIOApp
 {
 	[Activity(Label = "QR Scanner", Theme = "@style/AppTheme")]
 	public class ScannerActivity : Activity

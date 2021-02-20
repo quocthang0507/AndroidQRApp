@@ -2,11 +2,11 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using QR.Service;
+using AIOApp.Service;
 using System;
 using ZXing.Client.Result;
 
-namespace QR
+namespace AIOApp
 {
 	[Activity(Label = "QR Generator", Theme = "@style/AppTheme")]
 	public class GeneratorActivity : Activity

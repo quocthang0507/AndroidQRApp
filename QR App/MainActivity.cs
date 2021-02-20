@@ -9,7 +9,7 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 
-namespace QR
+namespace AIOApp
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/logo")]
 	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener

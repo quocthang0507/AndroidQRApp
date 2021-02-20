@@ -5,7 +5,7 @@ using Android.Widget;
 using System;
 using System.IO;
 
-namespace QR
+namespace AIOApp
 {
 	[Activity(Label = "ResultActivity", Theme = "@style/AppTheme")]
 	public class ResultActivity : Activity
