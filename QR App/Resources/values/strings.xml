@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name">QR Code Application</string>
-	<string name="title_main">The best QR application for Android!</string>
-    <string name="title_scanner">QR Scanner</string>
-    <string name="title_generator">QR Generator</string>
-	<string name="title_calendar">Lunar Calendar</string>
-	<string name="title_about">About</string>
-	<string name="btnSScan">Slow Scan\n(More accuracy)</string>
-	<string name="btnQScan">Quick Scan</string>
-	<string name="btnScanImage">Read from image</string>
-	<string name="btnEncode">Create QR Code</string>
-	<string name="btnSave">Save image</string>
-	<string name="descriptionScan">Scan</string>
-	<string name="descriptionImage">Image</string>
-	<string name="descriptionCalendar">Calendar</string>
-	<string name="lblInput">Text</string>
+    <string name="app_name">Tiện ích QT</string>
+	<string name="title_main">Tập hợp các tiện ích hữu ích nhất trong một ứng dụng!</string>
+    <string name="title_scanner">Quét QR</string>
+    <string name="title_generator">Tạo QR</string>
+	<string name="title_calendar">Lịch</string>
+	<string name="title_about">Giới thiệu</string>
+	<string name="btnSScan">Quét chậm\n(Chính xác hơn)</string>
+	<string name="btnQScan">Quét nhanh</string>
+	<string name="btnScanImage">Lấy hình ảnh</string>
+	<string name="btnEncode">Tạo mã QR</string>
+	<string name="btnSave">Lưu hình ảnh</string>
+	<string name="btnToday">Hôm nay</string>
+	<string name="btnSelectDay">Chọn ngày</string>
+	<string name="descriptionScan">Quét</string>
+	<string name="descriptionImage">Hình ảnh</string>
+	<string name="descriptionCalendar">Lịch</string>
+	<string name="lblInput">Văn bản</string>
 </resources>

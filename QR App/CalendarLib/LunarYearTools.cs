@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QR.Service
+namespace QR.CalendarLib
 {
 	public static class LunarYearTools
 	{

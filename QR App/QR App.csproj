@@ -66,16 +66,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarActivity.cs" />
+    <Compile Include="CalendarLib\Calendar.cs" />
     <Compile Include="GeneratorActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultActivity.cs" />
     <Compile Include="ScannerActivity.cs" />
+    <Compile Include="Service\CustomAdapter.cs" />
     <Compile Include="Service\IQRScanningService.cs" />
-    <Compile Include="Service\LunarDate.cs" />
-    <Compile Include="Service\LunarDateExt.cs" />
-    <Compile Include="Service\LunarYearTools.cs" />
+    <Compile Include="CalendarLib\LunarDate.cs" />
+    <Compile Include="CalendarLib\LunarDateExt.cs" />
+    <Compile Include="CalendarLib\LunarYearTools.cs" />
     <Compile Include="Service\QRScanningService.cs" />
     <Compile Include="Service\IntentHelper.cs" />
   </ItemGroup>
@@ -193,6 +195,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\grid_calendar_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
