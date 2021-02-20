@@ -70,6 +70,8 @@ namespace QR.Service
 			View view = convertView;
 			if (view == null)
 				view = context.LayoutInflater.Inflate(layout, null);
+			// Không hiển thị ngày trống
+			Calendar calendar = items[position];
 			if (items[position].LunarDate == null)
 			{
 				view.FindViewById<TextView>(Resource.Id.txtSolarDay).Text = string.Empty;
@@ -77,11 +79,17 @@ namespace QR.Service
 			}
 			else
 			{
-				view.FindViewById<TextView>(Resource.Id.txtSolarDay).Text = items[position].PrintedSolarDay.ToString();
-				view.FindViewById<TextView>(Resource.Id.txtLunarDay).Text = items[position].PrintedLunarDay.ToString();
+				view.FindViewById<TextView>(Resource.Id.txtSolarDay).Text = calendar.PrintedSolarDay.ToString();
+				view.FindViewById<TextView>(Resource.Id.txtLunarDay).Text = calendar.PrintedLunarDay.ToString();
 			}
+			// Hightlight ngày hiện tại
 			if (position == todayId)
-				view.SetBackgroundColor(Color.LightSteelBlue);
+				view.SetBackgroundColor(Color.LightGray);
+			// Đổi màu các ngày lễ
+			if (calendar.Event || calendar.SolarDate.DayOfWeek == System.DayOfWeek.Sunday)
+			{
+				view.FindViewById<TextView>(Resource.Id.txtSolarDay).SetTextColor(Color.Red);
+			}
 			return view;
 		}
 	}

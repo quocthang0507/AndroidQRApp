@@ -2,6 +2,7 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using QR.CalendarLib;
 using QR.Service;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,21 @@ namespace QR
 		private Button btnSelection;
 		private Button btnToday;
 		private ImageView btnPrev, btnNext;
-		private TextView txtDateDay, txtDisplayDate, txtDateYear;
+		private TextView txtDateDay, txtDisplayDate, txtDateYear, txtInfo;
 		private GridView gridView;
+
+		/// <summary>
+		/// Ngày đang được chọn
+		/// </summary>
 		private DateTime userDateTime;
+		/// <summary>
+		/// Mảng Calendar
+		/// </summary>
+		private List<Calendar> monthArr = new List<Calendar>();
+		/// <summary>
+		/// Nếu thay đổi tháng thì biến này sẽ tạo lại mảng monthArr
+		/// </summary>
+		private bool monthHadChanged = true;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -42,6 +55,7 @@ namespace QR
 			txtDateDay = FindViewById<TextView>(Resource.Id.date_display_day);
 			txtDateYear = FindViewById<TextView>(Resource.Id.date_display_year);
 			txtDisplayDate = FindViewById<TextView>(Resource.Id.date_display_date);
+			txtInfo = FindViewById<TextView>(Resource.Id.txtInfo);
 			btnSelection = FindViewById<Button>(Resource.Id.date_selection);
 			btnToday = FindViewById<Button>(Resource.Id.date_display_today);
 			gridView = FindViewById<GridView>(Resource.Id.calendar_grid);
@@ -60,19 +74,30 @@ namespace QR
 
 		private void BtnToday_Click(object sender, EventArgs e)
 		{
-			userDateTime = DateTime.Now;
-			ShowCalendar();
+			UpdateDate(DateTime.Now);
 		}
 
 		private void BtnNext_Click(object sender, EventArgs e)
 		{
-			userDateTime = userDateTime.AddDays(1);
-			ShowCalendar();
+			UpdateDate(userDateTime.AddDays(1));
 		}
 
 		private void BtnPrev_Click(object sender, EventArgs e)
 		{
-			userDateTime = userDateTime.AddDays(-1);
+			UpdateDate(userDateTime.AddDays(-1));
+		}
+
+		public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
+		{
+			// Tháng trong này bắt đầu từ 0!!!
+			UpdateDate(new DateTime(year, month + 1, dayOfMonth));
+		}
+
+		public void UpdateDate(DateTime dateTime)
+		{
+			if (dateTime.Month != userDateTime.Month || dateTime.Year != userDateTime.Year)
+				monthHadChanged = true;
+			userDateTime = dateTime;
 			ShowCalendar();
 		}
 
@@ -92,31 +117,36 @@ namespace QR
 			int days = DateTime.DaysInMonth(userDateTime.Year, userDateTime.Month);
 			int userDay = firstDayOfWeekOfMonth + userDateTime.Day - 1;
 
-			List<Calendar> arr = new List<Calendar>();
-
-			for (int i = 0; i < firstDayOfWeekOfMonth; i++)
+			if (monthHadChanged)
 			{
-				arr.Add(new Calendar());
-			}
-			for (int i = 0; i < days; i++)
-			{
-				arr.Add(new Calendar(dt.AddDays(i)));
+				monthArr.Clear();
+				for (int i = 0; i < firstDayOfWeekOfMonth; i++)
+				{
+					monthArr.Add(new Calendar());
+				}
+				for (int i = 0; i < days; i++)
+				{
+					monthArr.Add(new Calendar(dt.AddDays(i)));
+				}
+				monthHadChanged = false;
 			}
 
-			CustomAdapter arrayAdapter = new CustomAdapter(this, Resource.Layout.grid_calendar_layout, arr, userDay);
+			CustomAdapter arrayAdapter = new CustomAdapter(this, Resource.Layout.grid_calendar_layout, monthArr, userDay);
 			gridView.Adapter = arrayAdapter;
 			gridView.OnItemClickListener = this;
+			ShowInfo(userDay);
 		}
 
 		public void OnItemClick(AdapterView parent, View view, int position, long id)
 		{
-
+			DateTime dateTime = monthArr[position].SolarDate;
+			OnDateSet(null, dateTime.Year, dateTime.Month - 1, dateTime.Day);
 		}
 
-		public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
+		private void ShowInfo(int todayId)
 		{
-			userDateTime = new DateTime(year, month + 1, dayOfMonth);
-			ShowCalendar();
+			LunarDate lunarDate = monthArr[todayId].LunarDate;
+			txtInfo.Text = lunarDate.ToString(true);
 		}
 	}
 }

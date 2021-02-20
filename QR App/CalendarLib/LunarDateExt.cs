@@ -6,7 +6,7 @@ namespace QR.CalendarLib
 	{
 		public static LunarDate ToLunarDate(this DateTime d, int timeZone)
 		{
-			return LunarYearTools.SolarToLunar(d, timeZone);
+			return LunarYearTools.ConvertSolarToLunar(d, timeZone);
 		}
 
 		public static LunarDate ToLunarDate(this DateTime d)

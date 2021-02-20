@@ -73,7 +73,7 @@
                     android:padding="10dp"
                     android:textSize="15sp"
                     android:text="@string/btnSelectDay"
-                    android:background="@color/LightCoral"
+                    android:background="@color/LightSalmon"
             />
 
                 <Button
@@ -84,7 +84,7 @@
                     android:padding="10dp"
                     android:textSize="15sp"
                     android:text="@string/btnToday"
-                    android:background="@color/CornflowerBlue"
+                    android:background="@color/DarkSeaGreen"
             />
             </LinearLayout>
         </LinearLayout>
@@ -117,7 +117,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="SUN"/>
+            android:text="@string/SUN"/>
 
         <TextView
             android:layout_width="0dp"
@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="MON"/>
+            android:text="@string/MON"/>
 
         <TextView
             android:layout_width="0dp"
@@ -133,7 +133,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="TUE"/>
+            android:text="@string/TUE"/>
 
         <TextView
             android:layout_width="0dp"
@@ -141,7 +141,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="WED"/>
+            android:text="@string/WED"/>
 
         <TextView
             android:layout_width="0dp"
@@ -149,7 +149,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="THU"/>
+            android:text="@string/THU"/>
 
         <TextView
             android:layout_width="0dp"
@@ -157,7 +157,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="FRI"/>
+            android:text="@string/FRI"/>
 
         <TextView
             android:layout_width="0dp"
@@ -165,7 +165,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="SAT"/>
+            android:text="@string/SAT"/>
 
     </LinearLayout>
 
@@ -173,6 +173,14 @@
     <GridView
         android:id="@+id/calendar_grid"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:numColumns="7"/>
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:textSize="15sp"
+        android:text=""/>
 </LinearLayout>
