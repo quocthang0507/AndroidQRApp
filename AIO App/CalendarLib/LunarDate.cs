@@ -21,7 +21,7 @@ namespace AIOApp.CalendarLib
 			Month = month;
 			Year = year;
 			IsLeapYear = leap;
-			this.SolarDate = solarDate;
+			SolarDate = solarDate;
 			Ganzhi_Day = LunarYearTools.GetGanzhiOfSolarDay(solarDate.Day, solarDate.Month, solarDate.Year);
 			Ganzhi_Month = LunarYearTools.GetGanzhiOfMonth(month, year);
 			Ganzhi_Year = LunarYearTools.GetGanzhiOfYear(year);
@@ -29,7 +29,7 @@ namespace AIOApp.CalendarLib
 
 		public override string ToString()
 		{
-			string leap = IsLeapYear ? "Năm nhuận" : "Năm không nhuận";
+			string leap = IsLeapYear ? "năm nhuận" : "năm không nhuận";
 			return $"Âm lịch ngày {Day} tháng {Month} năm {Year}, {leap}";
 		}
 
@@ -38,7 +38,7 @@ namespace AIOApp.CalendarLib
 			string str = ToString();
 			if (full)
 			{
-				str += $" (Ngày {Ganzhi_Day} tháng {Ganzhi_Month} năm {Ganzhi_Year})";
+				str += $" (Ngày {Ganzhi_Day} tháng {Ganzhi_Month} năm {Ganzhi_Year}).";
 			}
 			return str;
 		}

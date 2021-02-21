@@ -69,7 +69,7 @@ namespace AIOApp
 		public void OnItemClick(AdapterView parent, View view, int position, long id)
 		{
 			DateTime dateTime = monthArr[position].SolarDate;
-			OnDateSet(null, dateTime.Year, dateTime.Month - 2, dateTime.Day);
+			OnDateSet(null, dateTime.Year, dateTime.Month - 1, dateTime.Day);
 		}
 
 		private void BtnSelection_Click(object sender, EventArgs e)
@@ -163,8 +163,10 @@ namespace AIOApp
 
 		private void ShowInfo(int todayId)
 		{
-			LunarDate lunarDate = monthArr[todayId].LunarDate;
+			Calendar calendar = monthArr[todayId];
+			LunarDate lunarDate = calendar.LunarDate;
 			txtInfo.Text = lunarDate.ToString(true);
+			txtInfo.Text += "\n\n" + calendar;
 		}
 	}
 }

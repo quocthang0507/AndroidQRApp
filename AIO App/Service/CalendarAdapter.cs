@@ -90,7 +90,7 @@ namespace AIOApp.Service
 				view.SetBackgroundColor(Color.LightGray);
 			}
 			// Đổi màu các ngày lễ
-			if (calendar.IsEvent || calendar.SolarDate.DayOfWeek == System.DayOfWeek.Sunday)
+			if (calendar.IsTet || calendar.SolarDate.DayOfWeek == System.DayOfWeek.Sunday)
 			{
 				view.FindViewById<TextView>(Resource.Id.txtSolarDay).SetTextColor(Color.Red);
 			}
