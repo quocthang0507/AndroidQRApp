@@ -16,11 +16,11 @@
 	<string name="descriptionImage">Hình ảnh</string>
 	<string name="descriptionCalendar">Lịch</string>
 	<string name="lblInput">Văn bản</string>
-	<string name="MON">Mon</string>
-	<string name="TUE">Tue</string>
-	<string name="WED">Wed</string>
-	<string name="THU">Thu</string>
-	<string name="FRI">Fri</string>
-	<string name="SAT">Sat</string>
-	<string name="SUN">Sun</string>
+	<string name="MON">Thứ 2</string>
+	<string name="TUE">Thứ 3</string>
+	<string name="WED">Thứ 4</string>
+	<string name="THU">Thứ 5</string>
+	<string name="FRI">Thứ 6</string>
+	<string name="SAT">Thứ 7</string>
+	<string name="SUN">C. Nhật</string>
 </resources>

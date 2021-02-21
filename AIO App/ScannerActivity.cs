@@ -1,10 +1,10 @@
-﻿using Android.App;
+﻿using AIOApp.Service;
+using Android.App;
 using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using AIOApp.Service;
 using System;
 
 namespace AIOApp

@@ -1,49 +1,49 @@
-﻿using Android.App;
+﻿using AIOApp.CalendarLib;
+using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using AIOApp.CalendarLib;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AIOApp.Service
 {
-	public class CustomAdapter : BaseAdapter<Calendar>
+	public class CalendarAdapter : BaseAdapter<Calendar>
 	{
 		private readonly Calendar[] items;
 		private readonly Activity context;
 		private readonly int layout;
 		private readonly int todayId;
 
-		public CustomAdapter(Activity context, Calendar[] items)
+		public CalendarAdapter(Activity context, Calendar[] items)
 		{
 			this.context = context;
 			this.layout = Resource.Layout.grid_calendar_layout;
 			this.items = items;
 		}
 
-		public CustomAdapter(Activity context, IList<Calendar> items)
+		public CalendarAdapter(Activity context, IList<Calendar> items)
 		{
 			this.context = context;
 			this.layout = Resource.Layout.grid_calendar_layout;
 			this.items = items.ToArray();
 		}
 
-		public CustomAdapter(Activity context, int layout, Calendar[] items)
+		public CalendarAdapter(Activity context, int layout, Calendar[] items)
 		{
 			this.context = context;
 			this.layout = layout;
 			this.items = items;
 		}
 
-		public CustomAdapter(Activity context, int layout, IList<Calendar> items)
+		public CalendarAdapter(Activity context, int layout, IList<Calendar> items)
 		{
 			this.context = context;
 			this.layout = layout;
 			this.items = items.ToArray();
 		}
 
-		public CustomAdapter(Activity context, int layout, Calendar[] items, int todayId)
+		public CalendarAdapter(Activity context, int layout, Calendar[] items, int todayId)
 		{
 			this.context = context;
 			this.layout = layout;
@@ -51,7 +51,7 @@ namespace AIOApp.Service
 			this.todayId = todayId;
 		}
 
-		public CustomAdapter(Activity context, int layout, IList<Calendar> items, int todayId)
+		public CalendarAdapter(Activity context, int layout, IList<Calendar> items, int todayId)
 		{
 			this.context = context;
 			this.layout = layout;
@@ -69,9 +69,11 @@ namespace AIOApp.Service
 		{
 			View view = convertView;
 			if (view == null)
+			{
 				view = context.LayoutInflater.Inflate(layout, null);
-			// Không hiển thị ngày trống
+			}
 			Calendar calendar = items[position];
+			// Không hiển thị ngày trống
 			if (items[position].LunarDate == null)
 			{
 				view.FindViewById<TextView>(Resource.Id.txtSolarDay).Text = string.Empty;
@@ -84,11 +86,19 @@ namespace AIOApp.Service
 			}
 			// Hightlight ngày hiện tại
 			if (position == todayId)
+			{
 				view.SetBackgroundColor(Color.LightGray);
+			}
 			// Đổi màu các ngày lễ
-			if (calendar.Event || calendar.SolarDate.DayOfWeek == System.DayOfWeek.Sunday)
+			if (calendar.IsEvent || calendar.SolarDate.DayOfWeek == System.DayOfWeek.Sunday)
 			{
 				view.FindViewById<TextView>(Resource.Id.txtSolarDay).SetTextColor(Color.Red);
+			}
+			// Đổi màu các ngày không thuộc tháng đó
+			if (calendar.NotInMonth)
+			{
+				view.FindViewById<TextView>(Resource.Id.txtSolarDay).SetTextColor(Color.LightGray);
+				view.FindViewById<TextView>(Resource.Id.txtLunarDay).SetTextColor(Color.LightGray);
 			}
 			return view;
 		}

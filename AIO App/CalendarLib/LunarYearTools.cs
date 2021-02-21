@@ -41,7 +41,10 @@ namespace AIOApp.CalendarLib
 			m = mm + 12 * a - 3;
 			jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - INT(y / 100) + INT(y / 400) - 32045;
 			if (jd < 2299161)
+			{
 				jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - 32083;
+			}
+
 			return jd;
 		}
 
@@ -83,16 +86,16 @@ namespace AIOApp.CalendarLib
 		/// <returns></returns>
 		public static long GetNewMoon(long k, double timeZone = 7.0)
 		{
-			var T = k / 1236.85;
-			var T2 = T * T;
-			var T3 = T2 * T;
-			var dr = Math.PI / 180;
-			var Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
+			double T = k / 1236.85;
+			double T2 = T * T;
+			double T3 = T2 * T;
+			double dr = Math.PI / 180;
+			double Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
 			Jd1 = Jd1 + 0.00033 * Math.Sin((166.56 + 132.87 * T - 0.009173 * T2) * dr);
-			var M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
-			var Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
-			var F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
-			var C1 = (0.1734 - 0.000393 * T) * Math.Sin(M * dr) + 0.0021 * Math.Sin(2 * dr * M);
+			double M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
+			double Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
+			double F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
+			double C1 = (0.1734 - 0.000393 * T) * Math.Sin(M * dr) + 0.0021 * Math.Sin(2 * dr * M);
 			C1 = C1 - 0.4068 * Math.Sin(Mpr * dr) + 0.0161 * Math.Sin(dr * 2 * Mpr);
 			C1 = C1 - 0.0004 * Math.Sin(dr * 3 * Mpr);
 			C1 = C1 + 0.0104 * Math.Sin(dr * 2 * F) - 0.0051 * Math.Sin(dr * (M + Mpr));
@@ -101,9 +104,14 @@ namespace AIOApp.CalendarLib
 			C1 = C1 + 0.0010 * Math.Sin(dr * (2 * F - Mpr)) + 0.0005 * Math.Sin(dr * (2 * Mpr + M));
 			double deltat, JdNew;
 			if (T < -11)
+			{
 				deltat = 0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3;
+			}
 			else
+			{
 				deltat = -0.000278 + 0.000265 * T + 0.000262 * T2;
+			}
+
 			JdNew = Jd1 + C1 - deltat;
 			return INT(JdNew + 0.5 + timeZone / 24);
 		}

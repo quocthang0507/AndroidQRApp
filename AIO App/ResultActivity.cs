@@ -66,7 +66,9 @@ namespace AIOApp
 			finally
 			{
 				if (fs != null)
+				{
 					fs.Close();
+				}
 			}
 			Toast.MakeText(this, "Save successfully to your phone", ToastLength.Short).Show();
 		}

@@ -1,9 +1,9 @@
-﻿using Android.App;
+﻿using AIOApp.CalendarLib;
+using AIOApp.Service;
+using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using AIOApp.CalendarLib;
-using AIOApp.Service;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -96,7 +96,10 @@ namespace AIOApp
 		public void UpdateDate(DateTime dateTime)
 		{
 			if (dateTime.Month != userDateTime.Month || dateTime.Year != userDateTime.Year)
+			{
 				monthHadChanged = true;
+			}
+
 			userDateTime = dateTime;
 			ShowCalendar();
 		}
@@ -113,25 +116,39 @@ namespace AIOApp
 		private void PopulateCalendar()
 		{
 			DateTime dt = new DateTime(userDateTime.Year, userDateTime.Month, 1);
-			int firstDayOfWeekOfMonth = (int)dt.DayOfWeek;
+			// Thứ trong hệ thống bắt đầu từ Chủ nhật, còn ở Việt Nam là thứ 2 nên phải đưa giá trị về trước (-1)
+			int firstDayOfWeekOfMonth = (int)dt.DayOfWeek - 1;
 			int days = DateTime.DaysInMonth(userDateTime.Year, userDateTime.Month);
 			int userDay = firstDayOfWeekOfMonth + userDateTime.Day - 1;
 
 			if (monthHadChanged)
 			{
 				monthArr.Clear();
-				for (int i = 0; i < firstDayOfWeekOfMonth; i++)
+				int i = 0;
+				// Các ngày trước của tháng
+				for (; i < firstDayOfWeekOfMonth; i++)
 				{
-					monthArr.Add(new Calendar());
+					monthArr.Add(new Calendar(dt.AddDays(-firstDayOfWeekOfMonth + i), true));
 				}
-				for (int i = 0; i < days; i++)
+				// Các ngày trong tháng
+				for (i = 0; i < days; i++)
 				{
 					monthArr.Add(new Calendar(dt.AddDays(i)));
+				}
+				// Các ngày sau của tháng
+				if (monthArr.Count % 7 != 0)
+				{
+					int after = 7 - monthArr.Count % 7;
+					after += i;
+					for (; i < after; i++)
+					{
+						monthArr.Add(new Calendar(dt.AddDays(i), true));
+					}
 				}
 				monthHadChanged = false;
 			}
 
-			CustomAdapter arrayAdapter = new CustomAdapter(this, Resource.Layout.grid_calendar_layout, monthArr, userDay);
+			CalendarAdapter arrayAdapter = new CalendarAdapter(this, Resource.Layout.grid_calendar_layout, monthArr, userDay);
 			gridView.Adapter = arrayAdapter;
 			gridView.OnItemClickListener = this;
 			ShowInfo(userDay);

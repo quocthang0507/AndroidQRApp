@@ -1,8 +1,8 @@
-﻿using Android.App;
+﻿using AIOApp.Service;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using AIOApp.Service;
 using System;
 using ZXing.Client.Result;
 
@@ -32,7 +32,7 @@ namespace AIOApp
 			tbxContent = FindViewById<EditText>(Resource.Id.tbxContent);
 			btnEncode = FindViewById<Button>(Resource.Id.btnEncode);
 			radioGroup = FindViewById<RadioGroup>(Resource.Id.radioGroup);
-			
+
 			btnEncode.Click += BtnEncode_Click;
 		}
 
