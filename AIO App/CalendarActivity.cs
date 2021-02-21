@@ -66,9 +66,16 @@ namespace AIOApp
 			btnSelection.Click += BtnSelection_Click;
 		}
 
+		public void OnItemClick(AdapterView parent, View view, int position, long id)
+		{
+			DateTime dateTime = monthArr[position].SolarDate;
+			OnDateSet(null, dateTime.Year, dateTime.Month - 2, dateTime.Day);
+		}
+
 		private void BtnSelection_Click(object sender, EventArgs e)
 		{
-			DatePickerDialog datePicker = new DatePickerDialog(this, this, userDateTime.Year, userDateTime.Month, userDateTime.Day);
+			// Tháng trong DatePicker bắt đầu từ 0
+			DatePickerDialog datePicker = new DatePickerDialog(this, this, userDateTime.Year, userDateTime.Month - 1, userDateTime.Day);
 			datePicker.Show();
 		}
 
@@ -152,12 +159,6 @@ namespace AIOApp
 			gridView.Adapter = arrayAdapter;
 			gridView.OnItemClickListener = this;
 			ShowInfo(userDay);
-		}
-
-		public void OnItemClick(AdapterView parent, View view, int position, long id)
-		{
-			DateTime dateTime = monthArr[position].SolarDate;
-			OnDateSet(null, dateTime.Year, dateTime.Month - 1, dateTime.Day);
 		}
 
 		private void ShowInfo(int todayId)
