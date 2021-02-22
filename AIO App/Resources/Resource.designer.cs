@@ -5331,13 +5331,19 @@ namespace AIOApp
 			public const int visible = 2131231016;
 			
 			// aapt resource value: 0x7F080129
-			public const int withText = 2131231017;
+			public const int widget_calendar_grid = 2131231017;
 			
 			// aapt resource value: 0x7F08012A
-			public const int wrap = 2131231018;
+			public const int widget_calendar_header = 2131231018;
 			
 			// aapt resource value: 0x7F08012B
-			public const int wrap_content = 2131231019;
+			public const int withText = 2131231019;
+			
+			// aapt resource value: 0x7F08012C
+			public const int wrap = 2131231020;
+			
+			// aapt resource value: 0x7F08012D
+			public const int wrap_content = 2131231021;
 			
 			static Id()
 			{
@@ -5649,10 +5655,13 @@ namespace AIOApp
 			public const int support_simple_spinner_dropdown_item = 2131427398;
 			
 			// aapt resource value: 0x7F0B0047
-			public const int zxingscanneractivitylayout = 2131427399;
+			public const int widget_calendar = 2131427399;
 			
 			// aapt resource value: 0x7F0B0048
-			public const int zxingscannerfragmentlayout = 2131427400;
+			public const int zxingscanneractivitylayout = 2131427400;
+			
+			// aapt resource value: 0x7F0B0049
+			public const int zxingscannerfragmentlayout = 2131427401;
 			
 			static Layout()
 			{
