@@ -53,10 +53,8 @@ namespace AIOApp
 			FileStream fs = null;
 			try
 			{
-				using (fs = new FileStream(filename, FileMode.Create))
-				{
-					bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, fs);
-				}
+				fs = new FileStream(filename, FileMode.Create);
+				bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, fs);
 			}
 			catch (Exception e)
 			{
@@ -67,10 +65,11 @@ namespace AIOApp
 			{
 				if (fs != null)
 				{
+					fs.Flush();
 					fs.Close();
 				}
 			}
-			Toast.MakeText(this, "Save successfully to your phone", ToastLength.Short).Show();
+			Toast.MakeText(this, $"Save successfully to your phone at {filename}", ToastLength.Long).Show();
 		}
 	}
 }

@@ -22,12 +22,12 @@ namespace AIOApp.Service
 			this.context = context;
 		}
 
-		public QRScanningService(Context context, bool difficulty, int width = 200, int height = 200)
+		public QRScanningService(Context context, bool difficulty, int width = 300, int height = 300)
 		{
 			this.context = context;
 			this.difficulty = difficulty;
-			this.WIDTH = width;
-			this.HEIGHT = height;
+			WIDTH = width;
+			HEIGHT = height;
 		}
 
 		public async void ScanAsync()

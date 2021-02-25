@@ -1,15 +1,4 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AIOApp.CalendarLib
+﻿namespace AIOApp.CalendarLib
 {
 	/// <summary>
 	/// Tử vi: http://khoia0.com/PDF-Files/THAMKHAO.pdf

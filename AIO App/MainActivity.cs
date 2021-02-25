@@ -1,4 +1,5 @@
-﻿using Android;
+﻿using AIOApp.Service;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -8,6 +9,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using System;
 
 namespace AIOApp
 {
@@ -30,8 +32,15 @@ namespace AIOApp
 			CheckReadPermission();
 
 			InitControl();
+			StartService();
 
 			bottomNav.SetOnNavigationItemSelectedListener(this);
+		}
+
+		private void StartService()
+		{
+			Intent intent = new Intent(this, typeof(NotificationService));
+			StartActivity(intent);
 		}
 
 		private void InitControl()
