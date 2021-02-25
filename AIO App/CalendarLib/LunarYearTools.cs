@@ -257,7 +257,7 @@ namespace AIOApp.CalendarLib
 					CHI = "Thìn";
 					break;
 				case 5:
-					CHI = "Tị";
+					CHI = "Tỵ";
 					break;
 				case 6:
 					CHI = "Ngọ";
@@ -343,7 +343,7 @@ namespace AIOApp.CalendarLib
 					CHI = "Thìn";
 					break;
 				case 4:
-					CHI = "Tị";
+					CHI = "Tỵ";
 					break;
 				case 5:
 					CHI = "Ngọ";
@@ -442,7 +442,7 @@ namespace AIOApp.CalendarLib
 					CHI = "Thìn";
 					break;
 				case 9:
-					CHI = "Tị";
+					CHI = "Tỵ";
 					break;
 				case 10:
 					CHI = "Ngọ";

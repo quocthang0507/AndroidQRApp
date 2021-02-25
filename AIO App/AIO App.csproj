@@ -72,6 +72,7 @@
     <Compile Include="CalendarActivity.cs" />
     <Compile Include="CalendarLib\Calendar.cs" />
     <Compile Include="CalendarLib\Events.cs" />
+    <Compile Include="CalendarLib\ZiWei.cs" />
     <Compile Include="GeneratorActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
