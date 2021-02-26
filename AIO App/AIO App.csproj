@@ -70,22 +70,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarFragment.cs" />
-    <Compile Include="CalendarLib\Calendar.cs" />
-    <Compile Include="CalendarLib\Events.cs" />
-    <Compile Include="CalendarLib\ZiWei.cs" />
+    <Compile Include="Core\CalendarLib\Calendar.cs" />
+    <Compile Include="Core\CalendarLib\Events.cs" />
+    <Compile Include="Core\CalendarLib\ZiWei.cs" />
     <Compile Include="ExperimentFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneratorFragment.cs" />
     <Compile Include="ScannerFragment.cs" />
-    <Compile Include="CalendarLib\CalendarAdapter.cs" />
-    <Compile Include="QRService\IQRScanningService.cs" />
-    <Compile Include="CalendarLib\LunarDate.cs" />
-    <Compile Include="CalendarLib\LunarDateExt.cs" />
-    <Compile Include="CalendarLib\LunarYearTools.cs" />
-    <Compile Include="QRService\QRScanningService.cs" />
-    <Compile Include="QRService\IntentHelper.cs" />
+    <Compile Include="Core\CalendarLib\CalendarAdapter.cs" />
+    <Compile Include="Core\QRService\IQRScanningService.cs" />
+    <Compile Include="Core\CalendarLib\LunarDate.cs" />
+    <Compile Include="Core\CalendarLib\LunarDateExt.cs" />
+    <Compile Include="Core\CalendarLib\LunarYearTools.cs" />
+    <Compile Include="Core\QRService\QRScanningService.cs" />
+    <Compile Include="Core\QRService\IntentHelper.cs" />
+    <Compile Include="Core\SensorLib\Sensors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
