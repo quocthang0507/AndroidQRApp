@@ -72,7 +72,10 @@
     <Compile Include="CalendarFragment.cs" />
     <Compile Include="Core\CalendarLib\Calendar.cs" />
     <Compile Include="Core\CalendarLib\Events.cs" />
+    <Compile Include="Core\CalendarLib\ExpandableHeightGridView.cs" />
     <Compile Include="Core\CalendarLib\ZiWei.cs" />
+    <Compile Include="Core\TouchLib\GestureListener.cs" />
+    <Compile Include="Core\TouchLib\TouchListener.cs" />
     <Compile Include="ExperimentFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

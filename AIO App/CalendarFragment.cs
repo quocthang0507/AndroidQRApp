@@ -1,6 +1,9 @@
 ﻿using AIOApp.CalendarLib;
+using AIOApp.Core.CalendarLib;
+using AIOApp.TouchLib;
 using Android.App;
 using Android.OS;
+using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using System;
@@ -16,8 +19,9 @@ namespace AIOApp
 		private Button btnToday;
 		private ImageView btnPrev, btnNext;
 		private TextView txtDateDay, txtDisplayDate, txtDateYear, txtInfo;
-		private GridView gridView;
+		private ExpandableHeightGridView gridView;
 		private View view;
+		private GestureDetectorCompat detector;
 
 		/// <summary>
 		/// Ngày đang được chọn
@@ -59,6 +63,11 @@ namespace AIOApp
 		private void InitControl()
 		{
 			userDateTime = DateTime.Now;
+			detector = new GestureDetectorCompat(view.Context, new GestureListener()
+			{
+				GoNextMonth = () => GoNextMonth(),
+				GoPreviousMonth = () => GoPreviousMonth()
+			});
 
 			btnPrev = view.FindViewById<ImageView>(Resource.Id.calendar_prev_button);
 			btnNext = view.FindViewById<ImageView>(Resource.Id.calendar_next_button);
@@ -68,12 +77,14 @@ namespace AIOApp
 			txtInfo = view.FindViewById<TextView>(Resource.Id.txtInfo);
 			btnSelection = view.FindViewById<Button>(Resource.Id.date_selection);
 			btnToday = view.FindViewById<Button>(Resource.Id.date_display_today);
-			gridView = view.FindViewById<GridView>(Resource.Id.calendar_grid);
+			gridView = view.FindViewById<ExpandableHeightGridView>(Resource.Id.calendar_grid);
 
 			btnPrev.Click += BtnPrev_Click;
 			btnNext.Click += BtnNext_Click;
 			btnToday.Click += BtnToday_Click;
 			btnSelection.Click += BtnSelection_Click;
+			gridView.IsExpanded = true;
+			gridView.SetOnTouchListener(new TouchListener(detector));
 		}
 
 		private void BtnSelection_Click(object sender, EventArgs e)
@@ -86,6 +97,16 @@ namespace AIOApp
 		private void BtnToday_Click(object sender, EventArgs e)
 		{
 			UpdateDate(DateTime.Now);
+		}
+
+		private void GoNextMonth()
+		{
+			UpdateDate(userDateTime.AddMonths(1));
+		}
+
+		private void GoPreviousMonth()
+		{
+			UpdateDate(userDateTime.AddMonths(-1));
 		}
 
 		private void BtnNext_Click(object sender, EventArgs e)
