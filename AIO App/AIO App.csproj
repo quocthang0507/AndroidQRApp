@@ -69,23 +69,24 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalendarActivity.cs" />
+    <Compile Include="CalendarFragment.cs" />
     <Compile Include="CalendarLib\Calendar.cs" />
     <Compile Include="CalendarLib\Events.cs" />
     <Compile Include="CalendarLib\ZiWei.cs" />
-    <Compile Include="GeneratorActivity.cs" />
+    <Compile Include="ExperimentFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultActivity.cs" />
-    <Compile Include="ScannerActivity.cs" />
-    <Compile Include="Service\CalendarAdapter.cs" />
-    <Compile Include="Service\IQRScanningService.cs" />
+    <Compile Include="GeneratorFragment.cs" />
+    <Compile Include="ScannerFragment.cs" />
+    <Compile Include="CalendarLib\CalendarAdapter.cs" />
+    <Compile Include="QRService\IQRScanningService.cs" />
     <Compile Include="CalendarLib\LunarDate.cs" />
     <Compile Include="CalendarLib\LunarDateExt.cs" />
     <Compile Include="CalendarLib\LunarYearTools.cs" />
-    <Compile Include="Service\QRScanningService.cs" />
-    <Compile Include="Service\IntentHelper.cs" />
+    <Compile Include="QRService\QRScanningService.cs" />
+    <Compile Include="QRService\IntentHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -212,6 +213,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\experiments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_experiments.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

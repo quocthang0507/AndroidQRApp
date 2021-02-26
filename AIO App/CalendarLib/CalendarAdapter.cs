@@ -1,12 +1,11 @@
-﻿using AIOApp.CalendarLib;
-using Android.App;
+﻿using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AIOApp.Service
+namespace AIOApp.CalendarLib
 {
 	public class CalendarAdapter : BaseAdapter<Calendar>
 	{

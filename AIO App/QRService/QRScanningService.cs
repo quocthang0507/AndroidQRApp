@@ -9,7 +9,7 @@ using ZXing.QrCode;
 using Result = ZXing.Result;
 using Settings = Android.Provider.Settings;
 
-namespace AIOApp.Service
+namespace AIOApp.QRService
 {
 	public class QRScanningService : IQRScanningService
 	{
@@ -51,7 +51,8 @@ namespace AIOApp.Service
 				CameraUnsupportedMessage = "The device's camera is not supported"
 			};
 			Result scanResult = await scanner.Scan(options);
-			ShowProperlyResult(scanResult.Text, GetResultType(scanResult));
+			if (scanResult != null)
+				ShowProperlyResult(scanResult.Text, GetResultType(scanResult));
 		}
 
 		public string Scan(Bitmap image)

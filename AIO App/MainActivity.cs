@@ -1,5 +1,4 @@
-﻿using AIOApp.Service;
-using Android;
+﻿using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -8,44 +7,35 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
-using System;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AIOApp
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/logo")]
 	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
 	{
-		TextView txtMessage;
-		BottomNavigationView bottomNav;
-		Intent intent;
+		private BottomNavigationView bottomNav;
+		private Intent intent;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-
 			SetContentView(Resource.Layout.activity_main);
+
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
 
 			CheckWritePermission();
 			CheckReadPermission();
 
 			InitControl();
-			StartService();
 
 			bottomNav.SetOnNavigationItemSelectedListener(this);
 		}
 
-		private void StartService()
-		{
-			Intent intent = new Intent(this, typeof(NotificationService));
-			StartActivity(intent);
-		}
-
 		private void InitControl()
 		{
-			txtMessage = FindViewById<TextView>(Resource.Id.message);
 			bottomNav = FindViewById<BottomNavigationView>(Resource.Id.bottomNav);
 		}
 
@@ -58,22 +48,35 @@ namespace AIOApp
 
 		public bool OnNavigationItemSelected(IMenuItem item)
 		{
+			Fragment fragment;
 			switch (item.ItemId)
 			{
 				case Resource.Id.nav_scanner:
-					intent = new Intent(this, typeof(ScannerActivity));
-					StartActivity(intent);
+					fragment = new ScannerFragment();
+					LoadFragment(fragment);
 					return true;
 				case Resource.Id.nav_generator:
-					intent = new Intent(this, typeof(GeneratorActivity));
-					StartActivity(intent);
+					fragment = new GeneratorFragment();
+					LoadFragment(fragment);
 					return true;
 				case Resource.Id.nav_calendar:
-					intent = new Intent(this, typeof(CalendarActivity));
-					StartActivity(intent);
+					fragment = new CalendarFragment();
+					LoadFragment(fragment);
+					return true;
+				case Resource.Id.nav_experiments:
+					fragment = new ExperimentFragment();
+					LoadFragment(fragment);
 					return true;
 			}
 			return false;
+		}
+
+		private void LoadFragment(Fragment fragment)
+		{
+			var transaction = SupportFragmentManager.BeginTransaction();
+			transaction.Add(Resource.Id.container, fragment);
+			transaction.AddToBackStack(null);
+			transaction.Commit();
 		}
 
 		private void CheckWritePermission()

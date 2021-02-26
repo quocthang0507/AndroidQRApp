@@ -1,19 +1,16 @@
 ﻿using AIOApp.CalendarLib;
-using AIOApp.Service;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using static Android.App.DatePickerDialog;
-using Calendar = AIOApp.CalendarLib.Calendar;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AIOApp
 {
-	[Activity(Label = "Calendar", Theme = "@style/AppTheme")]
-	public class CalendarActivity : Activity, AdapterView.IOnItemClickListener, IOnDateSetListener
+	public class CalendarFragment : Fragment, AdapterView.IOnItemClickListener, IOnDateSetListener
 	{
 		private LinearLayout header;
 		private Button btnSelection;
@@ -21,6 +18,7 @@ namespace AIOApp
 		private ImageView btnPrev, btnNext;
 		private TextView txtDateDay, txtDisplayDate, txtDateYear, txtInfo;
 		private GridView gridView;
+		private View view;
 
 		/// <summary>
 		/// Ngày đang được chọn
@@ -35,30 +33,43 @@ namespace AIOApp
 		/// </summary>
 		private bool monthHadChanged = true;
 
-		protected override void OnCreate(Bundle savedInstanceState)
+		public override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			SetContentView(Resource.Layout.activity_calendar);
+			// Create your fragment here
+		}
+
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		{
+			// Use this to return your custom view for this Fragment
+			view = inflater.Inflate(Resource.Layout.activity_calendar, container, false);
+			return view;
+
+			// return base.OnCreateView(inflater, container, savedInstanceState);
+		}
+
+		public override void OnActivityCreated(Bundle savedInstanceState)
+		{
+			base.OnActivityCreated(savedInstanceState);
 
 			InitControl();
-			ShowCalendar();
 		}
 
 		private void InitControl()
 		{
 			userDateTime = DateTime.Now;
 
-			header = FindViewById<LinearLayout>(Resource.Id.calendar_header);
-			btnPrev = FindViewById<ImageView>(Resource.Id.calendar_prev_button);
-			btnNext = FindViewById<ImageView>(Resource.Id.calendar_next_button);
-			txtDateDay = FindViewById<TextView>(Resource.Id.date_display_day);
-			txtDateYear = FindViewById<TextView>(Resource.Id.date_display_year);
-			txtDisplayDate = FindViewById<TextView>(Resource.Id.date_display_date);
-			txtInfo = FindViewById<TextView>(Resource.Id.txtInfo);
-			btnSelection = FindViewById<Button>(Resource.Id.date_selection);
-			btnToday = FindViewById<Button>(Resource.Id.date_display_today);
-			gridView = FindViewById<GridView>(Resource.Id.calendar_grid);
+			header = view.FindViewById<LinearLayout>(Resource.Id.calendar_header);
+			btnPrev = view.FindViewById<ImageView>(Resource.Id.calendar_prev_button);
+			btnNext = view.FindViewById<ImageView>(Resource.Id.calendar_next_button);
+			txtDateDay = view.FindViewById<TextView>(Resource.Id.date_display_day);
+			txtDateYear = view.FindViewById<TextView>(Resource.Id.date_display_year);
+			txtDisplayDate = view.FindViewById<TextView>(Resource.Id.date_display_date);
+			txtInfo = view.FindViewById<TextView>(Resource.Id.txtInfo);
+			btnSelection = view.FindViewById<Button>(Resource.Id.date_selection);
+			btnToday = view.FindViewById<Button>(Resource.Id.date_display_today);
+			gridView = view.FindViewById<GridView>(Resource.Id.calendar_grid);
 
 			btnPrev.Click += BtnPrev_Click;
 			btnNext.Click += BtnNext_Click;
@@ -66,16 +77,10 @@ namespace AIOApp
 			btnSelection.Click += BtnSelection_Click;
 		}
 
-		public void OnItemClick(AdapterView parent, View view, int position, long id)
-		{
-			DateTime dateTime = monthArr[position].SolarDate;
-			OnDateSet(null, dateTime.Year, dateTime.Month - 1, dateTime.Day);
-		}
-
 		private void BtnSelection_Click(object sender, EventArgs e)
 		{
 			// Tháng trong DatePicker bắt đầu từ 0
-			DatePickerDialog datePicker = new DatePickerDialog(this, this, userDateTime.Year, userDateTime.Month - 1, userDateTime.Day);
+			DatePickerDialog datePicker = new DatePickerDialog(view.Context, this, userDateTime.Year, userDateTime.Month - 1, userDateTime.Day);
 			datePicker.Show();
 		}
 
@@ -94,12 +99,6 @@ namespace AIOApp
 			UpdateDate(userDateTime.AddDays(-1));
 		}
 
-		public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
-		{
-			// Tháng trong này bắt đầu từ 0!!!
-			UpdateDate(new DateTime(year, month + 1, dayOfMonth));
-		}
-
 		public void UpdateDate(DateTime dateTime)
 		{
 			if (dateTime.Month != userDateTime.Month || dateTime.Year != userDateTime.Year)
@@ -113,7 +112,7 @@ namespace AIOApp
 
 		private void ShowCalendar()
 		{
-			string[] dayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.DayNames;
+			string[] dayOfWeek = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.DayNames;
 			txtDateYear.Text = userDateTime.Year.ToString();
 			txtDateDay.Text = dayOfWeek[(int)userDateTime.DayOfWeek];
 			txtDisplayDate.Text = userDateTime.ToString("dd MMMM");
@@ -155,7 +154,7 @@ namespace AIOApp
 				monthHadChanged = false;
 			}
 
-			CalendarAdapter arrayAdapter = new CalendarAdapter(this, Resource.Layout.grid_calendar_layout, monthArr, userDay);
+			CalendarAdapter arrayAdapter = new CalendarAdapter((Activity)view.Context, Resource.Layout.grid_calendar_layout, monthArr, userDay);
 			gridView.Adapter = arrayAdapter;
 			gridView.OnItemClickListener = this;
 			ShowInfo(userDay);
@@ -167,6 +166,18 @@ namespace AIOApp
 			LunarDate lunarDate = calendar.LunarDate;
 			txtInfo.Text = lunarDate.ToString(true);
 			txtInfo.Text += "\n\n" + calendar;
+		}
+
+		public void OnItemClick(AdapterView parent, View view, int position, long id)
+		{
+			DateTime dateTime = monthArr[position].SolarDate;
+			OnDateSet(null, dateTime.Year, dateTime.Month - 1, dateTime.Day);
+		}
+
+		public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
+		{
+			// Tháng trong này bắt đầu từ 0!!!
+			UpdateDate(new DateTime(year, month + 1, dayOfMonth));
 		}
 	}
 }

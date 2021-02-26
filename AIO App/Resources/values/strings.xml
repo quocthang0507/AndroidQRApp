@@ -5,7 +5,7 @@
     <string name="title_scanner">Quét QR</string>
     <string name="title_generator">Tạo QR</string>
 	<string name="title_calendar">Lịch</string>
-	<string name="title_about">Giới thiệu</string>
+	<string name="title_experiements">Thí nghiệm</string>
 	<string name="btnSScan">Quét chậm\n(Chính xác hơn)</string>
 	<string name="btnQScan">Quét nhanh</string>
 	<string name="btnScanImage">Lấy hình ảnh</string>
