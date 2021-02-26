@@ -24,4 +24,7 @@
 	<string name="FRI">Thứ 6</string>
 	<string name="SAT">Thứ 7</string>
 	<string name="SUN">C. Nhật</string>
+	<string name="menuSortAZ">Sắp xếp từ A đến Z</string>
+	<string name="menuSortZA">Sắp xếp từ Z đến A</string>
+	<string name="menuSortDefault">Sắp xếp mặc định</string>
 </resources>

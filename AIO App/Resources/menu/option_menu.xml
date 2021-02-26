@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_sort_az"
+          android:title="@string/menuSortAZ"
+          android:showAsAction="ifRoom"/>
+	<item android:id="@+id/menu_sort_za"
+	  android:title="@string/menuSortZA"
+	  android:showAsAction="ifRoom"/>
+	<item android:id="@+id/menu_sort_default"
+	  android:title="@string/menuSortDefault"
+	  android:showAsAction="ifRoom"/>
+</menu>

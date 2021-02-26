@@ -1,24 +1,17 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Hardware;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AIOApp.SensorLib
 {
 	public class Sensors
 	{
-		public SensorManager sensorManager;
-
+		private SensorManager sensorManager;
 		private static Sensors singleton;
 
-		public Sensors()
+		private Sensors()
 		{
 			sensorManager = (SensorManager)Application.Context.GetSystemService(Context.SensorService);
 		}
@@ -28,8 +21,19 @@ namespace AIOApp.SensorLib
 			get
 			{
 				if (singleton == null)
+				{
 					singleton = new Sensors();
+				}
+
 				return singleton;
+			}
+		}
+
+		public List<Sensor> GetSensors
+		{
+			get
+			{
+				return singleton.sensorManager.GetSensorList(SensorType.All).ToList();
 			}
 		}
 	}
