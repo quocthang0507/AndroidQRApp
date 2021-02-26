@@ -77,7 +77,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResultActivity.cs" />
     <Compile Include="GeneratorFragment.cs" />
     <Compile Include="ScannerFragment.cs" />
     <Compile Include="CalendarLib\CalendarAdapter.cs" />

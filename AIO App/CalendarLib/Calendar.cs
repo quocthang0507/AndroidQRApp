@@ -46,19 +46,23 @@ namespace AIOApp.CalendarLib
 			StringBuilder sb = new StringBuilder();
 
 			// Tìm ngày lễ trong cả âm lịch và dương lịch
-			var result = Events.SolarEvents.Where(e => e.Key == solarDate).ToList();
+			List<KeyValuePair<string, string>> result = Events.SolarEvents.Where(e => e.Key == solarDate).ToList();
 			result.AddRange(Events.LunarEvents.Where(e => e.Key == lunarDate));
 			////// Vì tất niên rơi vào ngày cuối cùng của năm (29 hoặc 30 tháng Chạp) nên
 			if (LunarDate.Month == 12 && LunarDate.Day == 30)
+			{
 				result.Add(new KeyValuePair<string, string>("30/12", "Lễ Tất Niên"));
+			}
 			else if (LunarDate.Month == 12 && LunarDate.Day == 29)
+			{
 				result.Add(new KeyValuePair<string, string>("29/12", "Lễ Tất Niên"));
+			}
 
 			// Duyệt tuần tự
 			if (result.Count > 0)
 			{
 				sb.AppendLine("Sự kiện/ ngày lễ: ");
-				foreach (var @event in result)
+				foreach (KeyValuePair<string, string> @event in result)
 				{
 					sb.AppendLine($"• {@event.Value}");
 				}

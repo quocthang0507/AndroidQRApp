@@ -47,29 +47,54 @@
 		public static string EclipticHour_Bad(string zhiOfDay, int month)
 		{
 			if (month == 1 && (zhiOfDay.Equals("Tý") || zhiOfDay.Equals("Tí")))
+			{
 				return "Hợi";
+			}
 			else if (month == 2 && zhiOfDay.Equals("Sửu"))
+			{
 				return "Tý";
+			}
 			else if (month == 3 && zhiOfDay.Equals("Dần"))
+			{
 				return "Sửu";
+			}
 			else if (month == 4 && zhiOfDay.Equals("Mão"))
+			{
 				return "Dần";
+			}
 			else if (month == 5 && zhiOfDay.Equals("Thìn"))
+			{
 				return "Mão";
+			}
 			else if (month == 6 && (zhiOfDay.Equals("Tỵ") || zhiOfDay.Equals("Tị")))
+			{
 				return "Thìn";
+			}
 			else if (month == 7 && zhiOfDay.Equals("Ngọ"))
+			{
 				return "Tỵ";
+			}
 			else if (month == 8 && zhiOfDay.Equals("Mùi"))
+			{
 				return "Ngọ";
+			}
 			else if (month == 9 && zhiOfDay.Equals("Thân"))
+			{
 				return "Mùi";
+			}
 			else if (month == 10 && zhiOfDay.Equals("Dậu"))
+			{
 				return "Thân";
+			}
 			else if (month == 11 && zhiOfDay.Equals("Tuất"))
+			{
 				return "Dậu";
+			}
 			else if (month == 12 && zhiOfDay.Equals("Hợi"))
+			{
 				return "Hợi";
+			}
+
 			return null;
 		}
 	}

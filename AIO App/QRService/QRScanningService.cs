@@ -52,7 +52,9 @@ namespace AIOApp.QRService
 			};
 			Result scanResult = await scanner.Scan(options);
 			if (scanResult != null)
+			{
 				ShowProperlyResult(scanResult.Text, GetResultType(scanResult));
+			}
 		}
 
 		public string Scan(Bitmap image)

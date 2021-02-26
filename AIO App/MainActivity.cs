@@ -1,6 +1,5 @@
 ﻿using Android;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -15,7 +14,6 @@ namespace AIOApp
 	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
 	{
 		private BottomNavigationView bottomNav;
-		private Intent intent;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -30,8 +28,9 @@ namespace AIOApp
 			CheckReadPermission();
 
 			InitControl();
-
 			bottomNav.SetOnNavigationItemSelectedListener(this);
+
+			LoadFragment(new CalendarFragment());
 		}
 
 		private void InitControl()
@@ -53,30 +52,34 @@ namespace AIOApp
 			{
 				case Resource.Id.nav_scanner:
 					fragment = new ScannerFragment();
-					LoadFragment(fragment);
-					return true;
+					break;
 				case Resource.Id.nav_generator:
 					fragment = new GeneratorFragment();
-					LoadFragment(fragment);
-					return true;
+					break;
 				case Resource.Id.nav_calendar:
 					fragment = new CalendarFragment();
-					LoadFragment(fragment);
-					return true;
+					break;
 				case Resource.Id.nav_experiments:
 					fragment = new ExperimentFragment();
-					LoadFragment(fragment);
-					return true;
+					break;
+				default:
+					return false;
 			}
-			return false;
+			LoadFragment(fragment);
+			return true;
 		}
 
-		private void LoadFragment(Fragment fragment)
+		private bool LoadFragment(Fragment fragment)
 		{
-			var transaction = SupportFragmentManager.BeginTransaction();
-			transaction.Add(Resource.Id.container, fragment);
-			transaction.AddToBackStack(null);
-			transaction.Commit();
+			if (fragment != null)
+			{
+				_ = SupportFragmentManager.BeginTransaction()
+				.Replace(Resource.Id.container, fragment)
+				.AddToBackStack(null)
+				.Commit();
+				return true;
+			}
+			return false;
 		}
 
 		private void CheckWritePermission()

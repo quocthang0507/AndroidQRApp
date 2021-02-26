@@ -12,7 +12,6 @@ namespace AIOApp
 {
 	public class CalendarFragment : Fragment, AdapterView.IOnItemClickListener, IOnDateSetListener
 	{
-		private LinearLayout header;
 		private Button btnSelection;
 		private Button btnToday;
 		private ImageView btnPrev, btnNext;
@@ -54,13 +53,13 @@ namespace AIOApp
 			base.OnActivityCreated(savedInstanceState);
 
 			InitControl();
+			ShowCalendar();
 		}
 
 		private void InitControl()
 		{
 			userDateTime = DateTime.Now;
 
-			header = view.FindViewById<LinearLayout>(Resource.Id.calendar_header);
 			btnPrev = view.FindViewById<ImageView>(Resource.Id.calendar_prev_button);
 			btnNext = view.FindViewById<ImageView>(Resource.Id.calendar_next_button);
 			txtDateDay = view.FindViewById<TextView>(Resource.Id.date_display_day);
