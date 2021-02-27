@@ -25,6 +25,11 @@
 	<string name="SAT">Thứ 7</string>
 	<string name="SUN">C. Nhật</string>
 	<string name="menuSortAZ">Sắp xếp từ A đến Z</string>
+	<string name="menuSortAZName">Tên cảm biến</string>
+	<string name="menuSortAZVendor">Nhà cung cấp</string>
 	<string name="menuSortZA">Sắp xếp từ Z đến A</string>
+	<string name="menuSortZAName">Tên cảm biến</string>
+	<string name="menuSortZAVendor">Nhà cung cấp</string>
 	<string name="menuSortDefault">Sắp xếp mặc định</string>
+	<string name="menuGroupType">Nhóm loại cảm biến</string>
 </resources>

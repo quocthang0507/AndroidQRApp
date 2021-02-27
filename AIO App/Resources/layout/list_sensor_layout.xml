@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp">
+
+    <TextView
+        android:id="@+id/txtSensorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Abc"
+        android:textSize="18sp"
+        android:textColor="@color/Black"/>
+
+    <TextView
+        android:id="@+id/txtSensorType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Abc"
+        android:textSize="16sp"
+        android:textColor="@color/Gray"
+        android:textAlignment="textEnd"/>
+
+    <TextView
+        android:id="@+id/txtSensorVendor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Abc"
+        android:textSize="16sp"
+        android:textColor="@color/Gray"
+        android:textAlignment="textEnd"/>
+
+</LinearLayout>

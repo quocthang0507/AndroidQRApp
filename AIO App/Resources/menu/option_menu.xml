@@ -2,10 +2,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/menu_sort_az"
           android:title="@string/menuSortAZ"
-          android:showAsAction="ifRoom"/>
+          android:showAsAction="ifRoom">
+
+		<menu>
+			<item android:id="@+id/menu_sort_az_name"
+				  android:title="@string/menuSortAZName"
+				  android:showAsAction="ifRoom"/>
+			
+			<item android:id="@+id/menu_sort_az_vendor"
+				  android:title="@string/menuSortAZVendor"
+				  android:showAsAction="ifRoom"/>
+		</menu>
+
+	</item>
+
 	<item android:id="@+id/menu_sort_za"
 	  android:title="@string/menuSortZA"
+	  android:showAsAction="ifRoom">
+
+		<menu>
+			<item android:id="@+id/menu_sort_za_name"
+				  android:title="@string/menuSortZAName"
+				  android:showAsAction="ifRoom"/>
+			
+			<item android:id="@+id/menu_sort_za_vendor"
+				  android:title="@string/menuSortZAVendor"
+				  android:showAsAction="ifRoom"/>
+		</menu>
+
+	</item>
+
+	<item android:id="@+id/menu_group_type"
+	  android:title="@string/menuGroupType"
 	  android:showAsAction="ifRoom"/>
+	
 	<item android:id="@+id/menu_sort_default"
 	  android:title="@string/menuSortDefault"
 	  android:showAsAction="ifRoom"/>

@@ -74,6 +74,7 @@
     <Compile Include="Core\CalendarLib\Events.cs" />
     <Compile Include="Core\CalendarLib\ExpandableHeightGridView.cs" />
     <Compile Include="Core\CalendarLib\ZiWei.cs" />
+    <Compile Include="Core\SensorLib\SensorAdapter.cs" />
     <Compile Include="Core\TouchLib\GestureListener.cs" />
     <Compile Include="Core\TouchLib\TouchListener.cs" />
     <Compile Include="ExperimentFragment.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Core\QRService\QRScanningService.cs" />
     <Compile Include="Core\QRService\IntentHelper.cs" />
     <Compile Include="Core\SensorLib\Sensors.cs" />
+    <Compile Include="SensorActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -227,6 +229,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\option_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_sensor_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_sensors.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,4 +1,7 @@
-﻿using AIOApp.SensorLib;
+﻿using AIOApp.Core.SensorLib;
+using AIOApp.SensorLib;
+using Android.App;
+using Android.Hardware;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -35,7 +38,7 @@ namespace AIOApp
 
 			InitControl();
 
-			List<string> menu = Sensors.Instance.GetSensors.Select(s => s.Name).ToList();
+			List<Sensor> menu = Sensors.Instance.GetSensors;
 			ShowListView(menu);
 		}
 
@@ -47,14 +50,23 @@ namespace AIOApp
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			List<string> menu = Sensors.Instance.GetSensors.Select(s => s.Name).ToList();
+			List<Sensor> menu = Sensors.Instance.GetSensors;
 			switch (item.ItemId)
 			{
-				case Resource.Id.menu_sort_az:
-					menu = menu.OrderBy(x => x).ToList();
+				case Resource.Id.menu_group_type:
+					menu = menu.OrderBy(x => x.Type).ToList();
 					break;
-				case Resource.Id.menu_sort_za:
-					menu = menu.OrderByDescending(x => x).ToList();
+				case Resource.Id.menu_sort_az_name:
+					menu = menu.OrderBy(x => x.Name).ToList();
+					break;
+				case Resource.Id.menu_sort_az_vendor:
+					menu = menu.OrderBy(x => x.Vendor).ToList();
+					break;
+				case Resource.Id.menu_sort_za_name:
+					menu = menu.OrderByDescending(x => x.Name).ToList();
+					break;
+				case Resource.Id.menu_sort_za_vendor:
+					menu = menu.OrderByDescending(x => x.Vendor).ToList();
 					break;
 				case Resource.Id.menu_sort_default:
 					break;
@@ -82,9 +94,9 @@ namespace AIOApp
 			}
 		}
 
-		private void ShowListView(List<string> menu)
+		private void ShowListView(List<Sensor> menu)
 		{
-			ArrayAdapter<string> adapter = new ArrayAdapter<string>(view.Context, Android.Resource.Layout.SimpleListItem1, menu);
+			SensorAdapter adapter = new SensorAdapter((Activity)view.Context, menu);
 			listView.Adapter = adapter;
 		}
 	}
