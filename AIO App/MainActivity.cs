@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
+using Java.Lang;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AIOApp
@@ -18,6 +20,7 @@ namespace AIOApp
 		private const string tagCalendar = "CALENDAR";
 		private const string tagExperiment = "EXPERIMENTS";
 		private BottomNavigationView bottomNav;
+		private bool doubleBack = false;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -35,6 +38,20 @@ namespace AIOApp
 			bottomNav.SetOnNavigationItemSelectedListener(this);
 
 			LoadFragment(new CalendarFragment());
+		}
+
+		public override void OnBackPressed()
+		{
+			if (doubleBack)
+			{
+				base.OnBackPressed();
+				return;
+			}
+
+			doubleBack = true;
+			Toast.MakeText(this, "Nhấn BACK một lần nữa để thoát", ToastLength.Short).Show();
+
+			new Handler().PostDelayed(() => { doubleBack = false; }, 2000);
 		}
 
 		private void InitControl()
@@ -79,7 +96,7 @@ namespace AIOApp
 			{
 				_ = SupportFragmentManager.BeginTransaction()
 				.Replace(Resource.Id.container, fragment)
-				.AddToBackStack(null)
+				// .AddToBackStack(null)
 				.Commit();
 				return true;
 			}
