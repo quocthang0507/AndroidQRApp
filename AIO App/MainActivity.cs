@@ -7,7 +7,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AIOApp
@@ -28,11 +27,11 @@ namespace AIOApp
 
 			SetContentView(Resource.Layout.activity_main);
 
-			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
-
 			CheckWritePermission();
 			CheckReadPermission();
+
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
 
 			InitControl();
 			bottomNav.SetOnNavigationItemSelectedListener(this);
