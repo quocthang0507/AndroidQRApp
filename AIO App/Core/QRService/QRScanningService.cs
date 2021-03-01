@@ -50,19 +50,30 @@ namespace AIOApp.QRService
 				CancelButtonText = "Cancel",
 				CameraUnsupportedMessage = "The device's camera is not supported"
 			};
-			Result scanResult = await scanner.Scan(options);
-			if (scanResult != null)
+			Result result = await scanner.Scan(options);
+			if (result != null)
 			{
-				ShowProperlyResult(scanResult.Text, GetResultType(scanResult));
+				ShowProperlyResult(result.Text, GetResultType(result));
+			}
+			else
+			{
+				throw new NullReferenceException();
 			}
 		}
 
-		public string Scan(Bitmap image)
+		public void Scan(Bitmap image)
 		{
 			Reader reader = new MultiFormatReader();
 			BinaryBitmap bytes = ConvertBitmapToBytes(image);
 			Result result = reader.decode(bytes);
-			return result.Text.Trim();
+			if (result != null)
+			{
+				ShowProperlyResult(result.Text, GetResultType(result));
+			}
+			else
+			{
+				throw new NullReferenceException();
+			}
 		}
 
 		public Bitmap Encode(string text)

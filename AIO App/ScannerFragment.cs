@@ -101,13 +101,11 @@ namespace AIOApp
 			try
 			{
 				QRScanningService scanner = new QRScanningService(view.Context);
-				string result = scanner.Scan(bitmap);
-				if (result != null)
-				{
-				}
+				scanner.Scan(bitmap);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				IntentHelper.OpenAlert(view.Context, "Error", ex.Message);
 			}
 		}
 
