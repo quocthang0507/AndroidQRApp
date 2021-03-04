@@ -1,6 +1,7 @@
 ﻿using AIOApp.Core.SensorLib;
 using AIOApp.SensorLib;
 using Android.App;
+using Android.Content;
 using Android.Hardware;
 using Android.OS;
 using Android.Views;
@@ -14,7 +15,9 @@ namespace AIOApp
 	public class ExperimentFragment : Fragment
 	{
 		private View view;
+		private List<Sensor> sensors;
 		private ListView listView;
+		public static Sensor selectedSensor;
 
 		public override void OnCreate(Bundle savedInstanceState)
 		{
@@ -38,8 +41,8 @@ namespace AIOApp
 
 			InitControl();
 
-			List<Sensor> menu = Sensors.Instance.GetSensors;
-			ShowListView(menu);
+			sensors = Sensors.Instance.GetSensors;
+			ShowListView(sensors);
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -87,11 +90,10 @@ namespace AIOApp
 		private void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			int position = e.Position;
-			switch (position)
-			{
-				default:
-					break;
-			}
+			selectedSensor = sensors[position];
+			SensorActivity.sensor = selectedSensor;
+			Intent intent = new Intent(Activity, typeof(SensorActivity));
+			StartActivity(intent);
 		}
 
 		private void ShowListView(List<Sensor> menu)

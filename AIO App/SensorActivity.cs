@@ -1,18 +1,22 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.Hardware;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using System.Text;
 
 namespace AIOApp
 {
 	[Activity(Label = "SensorActivity")]
 	public class SensorActivity : Activity, ISensorEventListener
 	{
-		private TextView txtValue;
+		private TextView txtValue, txtName;
 		private SensorManager sensorManager;
-		private Sensor sensor;
+
+		/// <summary>
+		/// Sets sensor to trace
+		/// </summary>
+		public static Sensor sensor { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -26,7 +30,10 @@ namespace AIOApp
 		private void InitControl()
 		{
 			txtValue = FindViewById<TextView>(Resource.Id.txtSensorValue);
-			sensorManager = (SensorManager)Application.Context.GetSystemService(Context.SensorService);
+			txtName = FindViewById<TextView>(Resource.Id.txtSensor);
+			sensorManager = (SensorManager)Application.Context.GetSystemService(SensorService);
+
+			txtName.Text = sensor.Name;
 		}
 
 		protected override void OnResume()
@@ -50,7 +57,12 @@ namespace AIOApp
 		{
 			// The light sensor returns a single value.
 			// Many sensors return 3 values, one for each axis.
-
+			StringBuilder sb = new StringBuilder();
+			foreach (var value in e.Values)
+			{
+				sb.AppendLine(value.ToString());
+			}
+			txtValue.Text = sb.ToString();
 		}
 	}
 }

@@ -5337,46 +5337,49 @@ namespace AIOApp
 			public const int txtLunarDay = 2131231017;
 			
 			// aapt resource value: 0x7F08012A
-			public const int txtSensorName = 2131231018;
+			public const int txtSensor = 2131231018;
 			
 			// aapt resource value: 0x7F08012B
-			public const int txtSensorType = 2131231019;
+			public const int txtSensorName = 2131231019;
 			
 			// aapt resource value: 0x7F08012C
-			public const int txtSensorValue = 2131231020;
+			public const int txtSensorType = 2131231020;
 			
 			// aapt resource value: 0x7F08012D
-			public const int txtSensorVendor = 2131231021;
+			public const int txtSensorValue = 2131231021;
 			
 			// aapt resource value: 0x7F08012E
-			public const int txtSolarDay = 2131231022;
+			public const int txtSensorVendor = 2131231022;
 			
 			// aapt resource value: 0x7F08012F
-			public const int uniform = 2131231023;
+			public const int txtSolarDay = 2131231023;
 			
 			// aapt resource value: 0x7F080130
-			public const int unlabeled = 2131231024;
+			public const int uniform = 2131231024;
 			
 			// aapt resource value: 0x7F080131
-			public const int up = 2131231025;
+			public const int unlabeled = 2131231025;
 			
 			// aapt resource value: 0x7F080132
-			public const int useLogo = 2131231026;
+			public const int up = 2131231026;
 			
 			// aapt resource value: 0x7F080133
-			public const int view_offset_helper = 2131231027;
+			public const int useLogo = 2131231027;
 			
 			// aapt resource value: 0x7F080134
-			public const int visible = 2131231028;
+			public const int view_offset_helper = 2131231028;
 			
 			// aapt resource value: 0x7F080135
-			public const int withText = 2131231029;
+			public const int visible = 2131231029;
 			
 			// aapt resource value: 0x7F080136
-			public const int wrap = 2131231030;
+			public const int withText = 2131231030;
 			
 			// aapt resource value: 0x7F080137
-			public const int wrap_content = 2131231031;
+			public const int wrap = 2131231031;
+			
+			// aapt resource value: 0x7F080138
+			public const int wrap_content = 2131231032;
 			
 			static Id()
 			{
