@@ -54,8 +54,8 @@ namespace AIOApp
 		{
 			try
 			{
-				QRScanningService service = new QRScanningService(view.Context, false);
-				service.ScanAsync();
+				QRScanningService scanner = new QRScanningService(view.Context, false);
+				scanner.ScanAsync();
 			}
 			catch (Exception ex)
 			{

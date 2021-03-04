@@ -14,7 +14,7 @@ namespace AIOApp.QRService
 	public class QRScanningService : IQRScanningService
 	{
 		private Context context;
-		private bool difficulty = false;
+		private bool isDifficulty = false;
 		private int WIDTH, HEIGHT;
 
 		public QRScanningService(Context context)
@@ -25,7 +25,7 @@ namespace AIOApp.QRService
 		public QRScanningService(Context context, bool difficulty, int width = 300, int height = 300)
 		{
 			this.context = context;
-			this.difficulty = difficulty;
+			this.isDifficulty = difficulty;
 			WIDTH = width;
 			HEIGHT = height;
 		}
@@ -33,7 +33,7 @@ namespace AIOApp.QRService
 		public async void ScanAsync()
 		{
 			MobileBarcodeScanningOptions options = new MobileBarcodeScanningOptions();
-			if (difficulty)
+			if (isDifficulty)
 			{
 				options = new MobileBarcodeScanningOptions()
 				{
@@ -63,7 +63,7 @@ namespace AIOApp.QRService
 
 		public void Scan(Bitmap image)
 		{
-			Reader reader = new MultiFormatReader();
+			MultiFormatReader reader = new MultiFormatReader();
 			BinaryBitmap bytes = ConvertBitmapToBytes(image);
 			Result result = reader.decode(bytes);
 			if (result != null)
@@ -94,6 +94,11 @@ namespace AIOApp.QRService
 			return bitmap;
 		}
 
+		/// <summary>
+		/// https://stackoverflow.com/a/32135865
+		/// </summary>
+		/// <param name="bitmap"></param>
+		/// <returns></returns>
 		private BinaryBitmap ConvertBitmapToBytes(Bitmap bitmap)
 		{
 			int[] intArr = new int[bitmap.Width * bitmap.Height];

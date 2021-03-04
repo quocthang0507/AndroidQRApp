@@ -7,6 +7,8 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Essentials;
+using ZXing.Mobile;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace AIOApp
@@ -30,8 +32,9 @@ namespace AIOApp
 			CheckWritePermission();
 			CheckReadPermission();
 
-			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-			ZXing.Mobile.MobileBarcodeScanner.Initialize(Application);
+			Platform.Init(Application);
+			MobileBarcodeScanner.Initialize(Application);
+
 
 			InitControl();
 			bottomNav.SetOnNavigationItemSelectedListener(this);
@@ -60,7 +63,7 @@ namespace AIOApp
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
 		{
-			Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
