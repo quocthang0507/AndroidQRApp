@@ -7,7 +7,7 @@
     android:padding="10sp">
 
     <TextView
-        android:id="@+id/txtSensorName"
+        android:id="@+id/txtSensorNameItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abc"
@@ -15,7 +15,7 @@
         android:textColor="@color/Black"/>
 
     <TextView
-        android:id="@+id/txtSensorType"
+        android:id="@+id/txtSensorTypeItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abc"
@@ -24,7 +24,7 @@
         android:textAlignment="textEnd"/>
 
     <TextView
-        android:id="@+id/txtSensorVendor"
+        android:id="@+id/txtSensorVendorItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abc"

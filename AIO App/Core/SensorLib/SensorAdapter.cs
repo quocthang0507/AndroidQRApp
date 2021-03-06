@@ -42,16 +42,16 @@ namespace AIOApp.Core.SensorLib
 				view = context.LayoutInflater.Inflate(layout, null);
 			}
 			Sensor sensor = sensors[position];
-			view.FindViewById<TextView>(Resource.Id.txtSensorName).Text = sensor.Name;
-			view.FindViewById<TextView>(Resource.Id.txtSensorVendor).Text = "NSX: " + sensor.Vendor;
+			view.FindViewById<TextView>(Resource.Id.txtSensorNameItem).Text = sensor.Name;
+			view.FindViewById<TextView>(Resource.Id.txtSensorVendorItem).Text = "NSX: " + sensor.Vendor;
 			KeyValuePair<int, string> result = Sensors.VietnameseSensorType.FirstOrDefault(x => x.Key == (int)sensor.Type);
 			if (!result.Equals(default(KeyValuePair<int, string>)))
 			{
-				view.FindViewById<TextView>(Resource.Id.txtSensorType).Text = "Loại: " + result.Value;
+				view.FindViewById<TextView>(Resource.Id.txtSensorTypeItem).Text = "Loại: " + result.Value;
 			}
 			else
 			{
-				view.FindViewById<TextView>(Resource.Id.txtSensorType).Text = "Loại: Không xác định";
+				view.FindViewById<TextView>(Resource.Id.txtSensorTypeItem).Text = "Loại: Không xác định";
 			}
 			return view;
 		}
