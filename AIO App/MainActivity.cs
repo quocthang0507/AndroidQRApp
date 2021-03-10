@@ -53,7 +53,7 @@ namespace AIOApp
 			doubleBack = true;
 			Toast.MakeText(this, "Nhấn BACK một lần nữa để thoát", ToastLength.Short).Show();
 
-			new Handler().PostDelayed(() => { doubleBack = false; }, 2000);
+			new Handler(Looper.MainLooper).PostDelayed(() => { doubleBack = false; }, 2000);
 		}
 
 		private void InitControl()

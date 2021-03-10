@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Provider;
 using Android.Views;
 using Android.Widget;
 using System;
@@ -102,6 +103,7 @@ namespace AIOApp
 			Toast.MakeText(view.Context, $"Save successfully to your phone at {filename}", ToastLength.Long).Show();
 		}
 
+		[Obsolete]
 		private void ShowAlert(Context context, string title, Bitmap bitmap)
 		{
 			AlertDialog dialog = null;
