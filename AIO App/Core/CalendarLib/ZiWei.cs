@@ -92,7 +92,7 @@
 			}
 			else if (month == 12 && zhiOfDay.Equals("Hợi"))
 			{
-				return "Hợi";
+				return "Tuất";
 			}
 
 			return null;
