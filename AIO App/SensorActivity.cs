@@ -17,7 +17,7 @@ namespace AIOApp
 		private SensorManager sensorManager;
 		private ImageView imgVisualization;
 		// For compass
-		private float DegreeStart = 0f;
+		private float degreeStart = 0;
 
 		/// <summary>
 		/// Sets sensor to trace
@@ -49,7 +49,7 @@ namespace AIOApp
 		{
 			base.OnResume();
 			sensorManager.RegisterListener(this, sensor, SensorDelay.Normal);
-			DegreeStart = 0f;
+			degreeStart = 0f;
 		}
 
 		protected override void OnPause()
@@ -74,11 +74,11 @@ namespace AIOApp
 			if (sensor.Type == SensorType.Orientation)
 			{
 				// get angle around the z-axis rotated
-				float degree = (float)Math.Round(e.Values[0]);
+				float degree = (float)Math.Round(e.Values[0], 0);
 
 				// rotation animation - reverse turn degree degrees
 				RotateAnimation animation = new RotateAnimation(
-						DegreeStart,
+						degreeStart,
 						-degree,
 						Dimension.RelativeToSelf, 0.5f,
 						Dimension.RelativeToSelf, 0.5f)
@@ -90,7 +90,7 @@ namespace AIOApp
 				};
 				// Start animation of compass image
 				imgVisualization.StartAnimation(animation);
-				DegreeStart = -degree;
+				degreeStart = -degree;
 			}
 		}
 	}
