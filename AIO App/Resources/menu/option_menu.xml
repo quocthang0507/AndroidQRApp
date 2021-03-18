@@ -9,8 +9,8 @@
 				  android:title="@string/menuSortAZName"
 				  android:showAsAction="ifRoom"/>
 			
-			<item android:id="@+id/menu_sort_az_vendor"
-				  android:title="@string/menuSortAZVendor"
+			<item android:id="@+id/menu_sort_az_type"
+				  android:title="@string/menuSortAZType"
 				  android:showAsAction="ifRoom"/>
 		</menu>
 
@@ -25,8 +25,8 @@
 				  android:title="@string/menuSortZAName"
 				  android:showAsAction="ifRoom"/>
 			
-			<item android:id="@+id/menu_sort_za_vendor"
-				  android:title="@string/menuSortZAVendor"
+			<item android:id="@+id/menu_sort_za_type"
+				  android:title="@string/menuSortZAType"
 				  android:showAsAction="ifRoom"/>
 		</menu>
 

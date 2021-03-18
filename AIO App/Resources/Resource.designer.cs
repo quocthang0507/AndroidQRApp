@@ -6855,7 +6855,7 @@ namespace AIOApp
 			public const int menu_sort_az_name = 2131230979;
 			
 			// aapt resource value: 0x7F080104
-			public const int menu_sort_az_vendor = 2131230980;
+			public const int menu_sort_az_type = 2131230980;
 			
 			// aapt resource value: 0x7F080105
 			public const int menu_sort_default = 2131230981;
@@ -6867,7 +6867,7 @@ namespace AIOApp
 			public const int menu_sort_za_name = 2131230983;
 			
 			// aapt resource value: 0x7F080108
-			public const int menu_sort_za_vendor = 2131230984;
+			public const int menu_sort_za_type = 2131230984;
 			
 			// aapt resource value: 0x7F080109
 			public const int message = 2131230985;
@@ -8344,7 +8344,7 @@ namespace AIOApp
 			public const int menuSortAZName = 2131689555;
 			
 			// aapt resource value: 0x7F0F0054
-			public const int menuSortAZVendor = 2131689556;
+			public const int menuSortAZType = 2131689556;
 			
 			// aapt resource value: 0x7F0F0055
 			public const int menuSortDefault = 2131689557;
@@ -8356,7 +8356,7 @@ namespace AIOApp
 			public const int menuSortZAName = 2131689559;
 			
 			// aapt resource value: 0x7F0F0058
-			public const int menuSortZAVendor = 2131689560;
+			public const int menuSortZAType = 2131689560;
 			
 			// aapt resource value: 0x7F0F0001
 			public const int MON = 2131689473;

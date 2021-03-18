@@ -42,7 +42,7 @@ namespace AIOApp
 			InitControl();
 
 			sensors = Sensors.Instance.GetSensors;
-			ShowListView(sensors);
+			ShowListView();
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -53,30 +53,30 @@ namespace AIOApp
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			List<Sensor> menu = Sensors.Instance.GetSensors;
+			sensors = Sensors.Instance.GetSensors;
 			switch (item.ItemId)
 			{
 				case Resource.Id.menu_group_type:
-					menu = menu.OrderBy(x => x.Type).ToList();
+					sensors = sensors.OrderBy(x => x.Type).ToList();
 					break;
 				case Resource.Id.menu_sort_az_name:
-					menu = menu.OrderBy(x => x.Name).ToList();
+					sensors = sensors.OrderBy(x => x.Name).ToList();
 					break;
-				case Resource.Id.menu_sort_az_vendor:
-					menu = menu.OrderBy(x => x.Vendor).ToList();
+				case Resource.Id.menu_sort_az_type:
+					sensors = sensors.OrderBy(s => Sensors.VietnameseSensorType.FirstOrDefault(x => x.Key == (int)s.Type).Value).ToList();
 					break;
 				case Resource.Id.menu_sort_za_name:
-					menu = menu.OrderByDescending(x => x.Name).ToList();
+					sensors = sensors.OrderByDescending(x => x.Name).ToList();
 					break;
-				case Resource.Id.menu_sort_za_vendor:
-					menu = menu.OrderByDescending(x => x.Vendor).ToList();
+				case Resource.Id.menu_sort_za_type:
+					sensors = sensors.OrderByDescending(s => Sensors.VietnameseSensorType.FirstOrDefault(x => x.Key == (int)s.Type).Value).ToList();
 					break;
 				case Resource.Id.menu_sort_default:
 					break;
 				default:
 					return base.OnOptionsItemSelected(item);
 			}
-			ShowListView(menu);
+			ShowListView();
 			return true;
 		}
 
@@ -96,9 +96,9 @@ namespace AIOApp
 			StartActivity(intent);
 		}
 
-		private void ShowListView(List<Sensor> menu)
+		private void ShowListView()
 		{
-			SensorAdapter adapter = new SensorAdapter((Activity)view.Context, menu);
+			SensorAdapter adapter = new SensorAdapter((Activity)view.Context, sensors);
 			listView.Adapter = adapter;
 		}
 	}
