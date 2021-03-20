@@ -108,6 +108,5 @@ namespace AIOApp
 				IntentHelper.OpenAlert(view.Context, "Error", ex.Message);
 			}
 		}
-
 	}
 }

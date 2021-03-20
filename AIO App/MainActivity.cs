@@ -35,7 +35,6 @@ namespace AIOApp
 			Platform.Init(Application);
 			MobileBarcodeScanner.Initialize(Application);
 
-
 			InitControl();
 			bottomNav.SetOnNavigationItemSelectedListener(this);
 

@@ -83,7 +83,7 @@ namespace AIOApp.SensorLib
 				case SensorType.AccelerometerUncalibrated:
 					unit = "m/s²";
 					info = $"X_uncalib = {e.Values[0]}\nY_uncalib = {e.Values[1]}\nZ_uncalib = {e.Values[2]}";
-					info += $"X_bias = {e.Values[3]}\nY_bias = {e.Values[4]}\nZ_bias = {e.Values[5]}";
+					info += $"\nX_bias = {e.Values[3]}\nY_bias = {e.Values[4]}\nZ_bias = {e.Values[5]}";
 					break;
 				case SensorType.RotationVector:
 				case SensorType.GameRotationVector:
@@ -97,11 +97,11 @@ namespace AIOApp.SensorLib
 					unit = "rad/s";
 					info = "Angular speed (w/o drift compensation) around \n";
 					info += $"X = {e.Values[0]}\nY = {e.Values[1]}\nZ= {e.Values[2]}";
-					info += "Estimated drift around \n";
+					info += "\nEstimated drift around \n";
 					info += $"X = {e.Values[3]}\nY = {e.Values[4]}\nZ = {e.Values[5]}";
 					break;
 				case SensorType.HeartBeat:
-					unit = "Sự kiện xảy ra có giá bằng 1 nếu phát hiện đỉnh nhịp tim";
+					unit = "Sự kiện xảy ra có giá trị bằng 1 nếu phát hiện đỉnh nhịp tim";
 					info = e.Values[0].ToString();
 					break;
 				case SensorType.Light:
@@ -119,7 +119,7 @@ namespace AIOApp.SensorLib
 				case SensorType.MagneticFieldUncalibrated:
 					unit = "μT";
 					info = $"X_uncalib = {e.Values[0]}\nY_uncalib = {e.Values[1]}\nZ_uncalib = {e.Values[2]}";
-					info += $"X = {e.Values[3]}\nY = {e.Values[4]}\nZ = {e.Values[5]}";
+					info += $"\nX = {e.Values[3]}\nY = {e.Values[4]}\nZ = {e.Values[5]}";
 					break;
 				case SensorType.MotionDetect:
 					unit = "Giá trị nếu chuyển động ít nhất 5 giây = 1.0";
@@ -127,20 +127,20 @@ namespace AIOApp.SensorLib
 					break;
 				case SensorType.Pose6dof:
 					info = "x*sin(θ/ 2) = " + e.Values[0];
-					info += "y*sin(θ/ 2) = " + e.Values[1];
-					info += "z*sin(θ/ 2) = " + e.Values[2];
-					info += "cos(θ / 2) = " + e.Values[3];
-					info += "Translation along x axis from an arbitrary origin = " + e.Values[4];
-					info += "Translation along y axis from an arbitrary origin = " + e.Values[5];
-					info += "Translation along z axis from an arbitrary origin = " + e.Values[6];
-					info += "Delta quaternion rotation x*sin(θ / 2) = " + e.Values[7];
-					info += "Delta quaternion rotation y*sin(θ / 2) = " + e.Values[8];
-					info += "Delta quaternion rotation z*sin(θ / 2) = " + e.Values[9];
-					info += "Delta quaternion rotation cos(θ/ 2) = " + e.Values[10];
-					info += "Delta translation along x axis = " + e.Values[11];
-					info += "Delta translation along y axis = " + e.Values[12];
-					info += "Delta translation along z axis = " + e.Values[13];
-					info += "Sequence number = " + e.Values[14];
+					info += "\ny*sin(θ/ 2) = " + e.Values[1];
+					info += "\nz*sin(θ/ 2) = " + e.Values[2];
+					info += "\ncos(θ / 2) = " + e.Values[3];
+					info += "\nTranslation along x axis from an arbitrary origin = " + e.Values[4];
+					info += "\nTranslation along y axis from an arbitrary origin = " + e.Values[5];
+					info += "\nTranslation along z axis from an arbitrary origin = " + e.Values[6];
+					info += "\nDelta quaternion rotation x*sin(θ / 2) = " + e.Values[7];
+					info += "\nDelta quaternion rotation y*sin(θ / 2) = " + e.Values[8];
+					info += "\nDelta quaternion rotation z*sin(θ / 2) = " + e.Values[9];
+					info += "\nDelta quaternion rotation cos(θ/ 2) = " + e.Values[10];
+					info += "\nDelta translation along x axis = " + e.Values[11];
+					info += "\nDelta translation along y axis = " + e.Values[12];
+					info += "\nDelta translation along z axis = " + e.Values[13];
+					info += "\nSequence number = " + e.Values[14];
 					break;
 				case SensorType.Pressure:
 					unit = "hPa (millibar)";
@@ -157,11 +157,11 @@ namespace AIOApp.SensorLib
 				default:
 					foreach (float value in e.Values)
 					{
-						info += $"{value.ToString()}\n";
+						info += $"{value}\n";
 					}
 					break;
 			}
-			return $"{unit}\n{info}";
+			return $"({unit})\n{info}";
 		}
 	}
 }
