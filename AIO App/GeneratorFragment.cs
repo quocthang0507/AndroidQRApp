@@ -18,7 +18,6 @@ namespace AIOApp
 		private View view;
 		private EditText tbxContent;
 		private Button btnEncode;
-		private RadioGroup radioGroup;
 		private ImageView imgQR;
 		private Bitmap bitmap;
 
@@ -33,7 +32,6 @@ namespace AIOApp
 		{
 			tbxContent = view.FindViewById<EditText>(Resource.Id.tbxContent);
 			btnEncode = view.FindViewById<Button>(Resource.Id.btnEncode);
-			radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup);
 
 			btnEncode.Click += BtnEncode_Click;
 		}
@@ -51,7 +49,6 @@ namespace AIOApp
 		{
 			base.OnActivityCreated(savedInstanceState);
 			InitControl();
-			CreateRadioButton();
 		}
 
 		private void BtnEncode_Click(object sender, EventArgs e)
@@ -65,17 +62,6 @@ namespace AIOApp
 			catch (Exception)
 			{
 
-			}
-		}
-
-		private void CreateRadioButton()
-		{
-			RadioButton button;
-			foreach (string typeName in Enum.GetNames(typeof(ParsedResultType)))
-			{
-				button = new RadioButton(view.Context);
-				button.SetText(typeName, TextView.BufferType.Normal);
-				radioGroup.AddView(button);
 			}
 		}
 
@@ -103,7 +89,6 @@ namespace AIOApp
 			Toast.MakeText(view.Context, $"Save successfully to your phone at {filename}", ToastLength.Long).Show();
 		}
 
-		[Obsolete]
 		private void ShowAlert(Context context, string title, Bitmap bitmap)
 		{
 			AlertDialog dialog = null;
@@ -117,7 +102,7 @@ namespace AIOApp
 			.SetTitle(title)
 			.SetPositiveButton("Save", (sender, e) =>
 			{
-				Java.IO.File storagePath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
+				Java.IO.File storagePath = context.GetExternalFilesDir(Android.OS.Environment.DirectoryPictures);
 				string datetime = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
 				string path = System.IO.Path.Combine(storagePath.ToString(), $"QR_{datetime}.jpg");
 				SaveImage(bitmap, path);

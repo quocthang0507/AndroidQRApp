@@ -16,10 +16,6 @@ namespace AIOApp
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/logo")]
 	public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
 	{
-		private const string tagScanner = "SCANNER";
-		private const string tagGenerator = "GENERATOR";
-		private const string tagCalendar = "CALENDAR";
-		private const string tagExperiment = "EXPERIMENTS";
 		private BottomNavigationView bottomNav;
 		private bool doubleBack = false;
 
@@ -39,6 +35,11 @@ namespace AIOApp
 			bottomNav.SetOnNavigationItemSelectedListener(this);
 
 			LoadFragment(new CalendarFragment());
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
 		}
 
 		public override void OnBackPressed()
@@ -91,7 +92,7 @@ namespace AIOApp
 			return true;
 		}
 
-		private bool LoadFragment(Fragment fragment, string tag = null)
+		private bool LoadFragment(Fragment fragment)
 		{
 			if (fragment != null)
 			{
